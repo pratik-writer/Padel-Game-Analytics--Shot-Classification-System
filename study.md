@@ -1,0 +1,115 @@
+Here is your complete, end-to-end study material. I have stripped away the academic fluff and focused entirely on the applied engineering concepts you need to build this prototype. 
+
+Read through this carefully tonight. [cite_start]By tomorrow, you will understand exactly *how* the code Copilot generates works, allowing you to debug it and confidently explain your methodology in your README and demo[cite: 43, 47, 48].
+
+---
+
+### Part 1: YOLOv8 & Object Tracking (The Vision Engine)
+
+YOLO (You Only Look Once) is an object detection model. It looks at an image and draws bounding boxes around objects it recognizes. Ultralytics' YOLOv8 is the current industry standard for ease of use.
+
+**1. The COCO Dataset Classes**
+Pre-trained YOLO models are trained on a dataset called COCO (Common Objects in Context), which has 80 categories. You only care about three:
+* `0`: person
+* `32`: sports ball
+* `38`: tennis racket (close enough for padel)
+
+**2. Detection vs. Tracking**
+* **Detection:** The model finds a person in Frame 1 and draws a box. In Frame 2, it finds the person again. *However, the model doesn't know it's the same person.* It has frame-by-frame amnesia.
+* **Tracking (`persist=True` in YOLOv8):** Tracking adds an algorithm (like ByteTrack) that assigns a unique ID to a box. If it detects "Person A" in Frame 1, it predicts where Person A will be in Frame 2. If the new detection overlaps with the prediction (measured via **Intersection over Union** or **IoU**), it keeps the same ID. [cite_start]This is how you output the "Player" identifier[cite: 25].
+
+**3. Understanding YOLO Output Data**
+When YOLO processes a frame, it returns a `results` object containing `boxes`. You need to extract four things from each box:
+1.  **Coordinates (`xyxy`):** The top-left ($x_1, y_1$) and bottom-right ($x_2, y_2$) pixel coordinates of the box.
+2.  **Class (`cls`):** The integer representing the object (0, 32, or 38).
+3.  **Confidence (`conf`):** A probability score (0.0 to 1.0). You usually ignore boxes under 0.5 confidence to avoid false positives.
+4.  **Track ID (`id`):** The unique integer assigned to the tracked object.
+
+---
+
+### Part 2: MediaPipe Pose Estimation (The Biomechanics Engine)
+
+[cite_start]Relying strictly on a bounding box to classify a "Forehand" vs. "Backhand" is too difficult for a 5-day assignment[cite: 59]. We use MediaPipe to extract human skeleton data from the player's bounding box. 
+
+**1. The Landmark Topology**
+MediaPipe detects 33 3D points (landmarks) on the human body. You only need the upper body points:
+* **Shoulders:** Left (11), Right (12)
+* **Elbows:** Left (13), Right (14)
+* **Wrists:** Left (15), Right (16)
+
+**2. The Normalization Quirk (CRITICAL)**
+MediaPipe does *not* give you pixel coordinates. It gives you **normalized coordinates** between $0.0$ and $1.0$. 
+* If a wrist is exactly in the middle of a 1000x1000 pixel image, MediaPipe outputs $x = 0.5, y = 0.5$.
+* **The Math:** To draw a dot on the wrist or calculate real distances, you must multiply the normalized values by the image's dimensions:
+    $Pixel\_X = \text{int}(landmark.x \times \text{Image\_Width})$
+    $Pixel\_Y = \text{int}(landmark.y \times \text{Image\_Height})$
+
+---
+
+### Part 3: The Geometry of a Swing (Heuristics & Logic)
+
+[cite_start]This is your shot classification system[cite: 5]. [cite_start]You are going to use "Smart Heuristics" (rule-based logic)[cite: 30]. [cite_start]This perfectly aligns with the instruction to "Keep it simple, but meaningful"[cite: 70].
+
+**1. The OpenCV Coordinate System**
+In computer vision, the origin point $(0, 0)$ is the **Top-Left** corner of the image. 
+* As you move **Right**, $X$ increases.
+* As you move **Down**, $Y$ increases. 
+* *Therefore, a smaller $Y$ value means something is higher up on the screen.*
+
+**2. Serve/Smash Logic**
+A smash or serve happens above the head.
+* **Logic:** If the active wrist's $Y$-coordinate is significantly less than the shoulder's $Y$-coordinate, the player is reaching up.
+* **Pseudo-math:** If $Y_{wrist} < Y_{shoulder} - \text{threshold}$, then Shot = "Smash".
+
+**3. Forehand vs. Backhand Logic**
+Assume the player's back is to the camera (the standard broadcast angle) and they are right-handed.
+* **Center Axis:** Calculate the center of the player's body by averaging the $X$ coordinates of the left and right shoulders: $X_{center} = (X_{shoulder\_left} + X_{shoulder\_right}) / 2$.
+* **Forehand:** A right-handed player hitting a forehand will extend their right wrist out to the right side of their body. 
+    * **Logic:** If $X_{wrist\_right} > X_{center}$, it's likely a forehand.
+* **Backhand:** To hit a backhand, the right-handed player must cross their right arm over to the left side of their body.
+    * **Logic:** If $X_{wrist\_right} < X_{center}$, it's likely a backhand.
+
+*Note: For the prototype, assume right-handed players. [cite_start]Document this assumption in your approach explanation[cite: 47, 48]. [cite_start]Evaluators want to see that you understand the limitations of your system[cite: 61].*
+
+---
+
+### Part 4: OpenCV Video Pipeline (The Plumbing)
+
+OpenCV (`cv2`) is how you manipulate the video file. A video is just a fast sequence of images (frames). 
+
+**1. Reading the Video**
+You use `cap = cv2.VideoCapture('video.mp4')`. You must also extract the video's original frame width, frame height, and FPS (Frames Per Second). If you don't, your output video will play at the wrong speed or look distorted.
+
+**2. The Event Loop**
+All video processing happens inside a `while cap.isOpened():` loop. 
+1.  Read a frame.
+2.  Pass frame to YOLO.
+3.  Crop the player box and pass to MediaPipe.
+4.  Run geometry math to guess the shot.
+5.  Draw text and boxes on the frame.
+6.  Write the frame to the new video file.
+
+**3. Writing the Video**
+You use `cv2.VideoWriter`. The most common stumbling block here is the codec (FourCC). For MP4 output, you will use `cv2.VideoWriter_fourcc(*'mp4v')`. 
+
+**4. Structured Output Formatting**
+[cite_start]The assignment requires output in a JSON or CSV format[cite: 22, 52]. As your loop runs, you will append a dictionary to a standard Python list:
+```python
+shot_data.append({
+    "timestamp": current_time_in_seconds,
+    "player_id": player_track_id,
+    "shot_type": "Forehand"
+})
+```
+At the very end of your script, outside the loop, you use the `pandas` library to convert this list into a DataFrame and save it (`df.to_csv('output.csv')`).
+
+---
+
+### Your Mental Checklist for Tomorrow
+When you start generating code, ensure the architecture follows this sequence:
+1.  **Extract:** Grab the frame.
+2.  [cite_start]**Detect & Track:** Find the humans and the ball[cite: 17]. 
+3.  **Isolate:** Find the specific human who is closest to the ball (this is how you know *which* player is hitting the shot).
+4.  **Analyze:** Run Pose Estimation on that specific human.
+5.  [cite_start]**Classify:** Apply the $X/Y$ coordinate math to determine the shot type[cite: 18].
+6.  [cite_start]**Record & Draw:** Save the data to your list [cite: 22] [cite_start]and draw the cool bounding boxes for the demo video[cite: 45, 46].
