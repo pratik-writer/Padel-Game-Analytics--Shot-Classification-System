@@ -3,9 +3,9 @@ from ultralytics import YOLO
 import mediapipe as mp
 
 # 1. Initialize Models
-model = YOLO('yolov8n.pt') # Use nano for speed, scale up to 's' or 'm' if needed
-mp_pose = mp.solutions.pose
-pose = mp_pose.Pose()
+# model = YOLO('yolov8n.pt') # Use nano for speed, scale up to 's' or 'm' if needed
+# mp_pose = mp.solutions.pose
+# pose = mp_pose.Pose()
 
 # 2. Setup Video I/O
 cap = cv2.VideoCapture('input.mp4')
