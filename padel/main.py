@@ -95,7 +95,8 @@ def main():
                           cv2.VideoWriter_fourcc(*"mp4v"),
                           fps, (width, height))
 
-    tracker = Tracker(weights="yolov8n.pt", conf=0.30)
+    # tracker = Tracker(weights="yolov8n.pt", conf=0.30)
+    tracker = Tracker(weights="yolov8s.pt", base_conf=0.10, imgsz=1280)
 
     frame_idx = 0
     while True:
