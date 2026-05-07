@@ -78,7 +78,12 @@ def main():
             tracks = filter_tracks_in_court(tracks, court_polygon, max_persons=4)
             poses  = poser.estimate_for_tracks(frame, tracks)
 
-            new_events = classifier.update(frame_idx, t_sec, poses)
+            new_events = classifier.update(
+                frame_idx, t_sec, poses,
+                racket_centers=[(0.5*(t["bbox"][0]+t["bbox"][2]),
+                                 0.5*(t["bbox"][1]+t["bbox"][3]))
+                                for t in tracks if t["name"] == "racket"],
+            )
             for ev in new_events:
                 events_log.append(ev)
                 last_event_text = f"P{ev.player_id}: {ev.shot_type}"
