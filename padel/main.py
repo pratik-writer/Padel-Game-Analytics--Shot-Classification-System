@@ -131,6 +131,7 @@ import os
 from pathlib import Path
 from tracker import Tracker
 from pose import PoseEstimator, POSE_CONNECTIONS
+from classifier import ShotClassifier
 
 INPUT_PATH  = "data/input.mp4"
 OUTPUT_PATH = "outputs/output.mp4"
@@ -185,6 +186,10 @@ def main():
 
     tracker  = Tracker(weights="yolov8s.pt", base_conf=0.10, imgsz=1280)
     poser    = PoseEstimator(model_complexity=1)
+    classifier = ShotClassifier()
+    events_log = []
+    last_event_text = ""
+    last_event_until = -1.0
 
     frame_idx = 0
     try:
@@ -197,12 +202,23 @@ def main():
             tracks = tracker.update(frame)
             poses  = poser.estimate_for_tracks(frame, tracks)
 
+            new_events = classifier.update(frame_idx, t_sec, poses)
+            for ev in new_events:
+                events_log.append(ev)
+                last_event_text = f"P{ev.player_id}: {ev.shot_type}"
+                last_event_until = t_sec + 1.5
+                print(f"[EVENT] t={ev.timestamp:6.2f}s  P{ev.player_id}  {ev.shot_type}  ({ev.confidence})")
+
             draw_tracks(frame, tracks)
             draw_poses(frame, poses)
 
             cv2.putText(frame,
                         f"frame={frame_idx} t={t_sec:6.2f}s dets={len(tracks)} poses={len(poses)}",
                         (15, 35), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+            
+            if t_sec <= last_event_until and last_event_text:
+                cv2.putText(frame, last_event_text, (15, 75),
+                            cv2.FONT_HERSHEY_SIMPLEX, 1.1, (0, 255, 255), 3)
 
             out.write(frame)
             frame_idx += 1
@@ -212,6 +228,9 @@ def main():
         cap.release()
         out.release()
         poser.close()
+    print(f"[SUMMARY] {len(events_log)} shot events")
+    from collections import Counter
+    print(Counter(e.shot_type for e in events_log))
     print(f"[DONE] wrote {frame_idx} frames -> {OUTPUT_PATH}")
 
 if __name__ == "__main__":
