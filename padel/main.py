@@ -5,6 +5,7 @@ from tracker import Tracker
 from pose import PoseEstimator, POSE_CONNECTIONS
 from classifier import ShotClassifier
 from court_roi import load_or_calibrate, filter_tracks_in_court, draw_court
+from ball import BallTracker, draw_ball
 
 INPUT_PATH  = "data/input.mp4"
 OUTPUT_PATH = "outputs/output.mp4"
@@ -62,6 +63,7 @@ def main():
     classifier = ShotClassifier()
     court_polygon = load_or_calibrate(INPUT_PATH)
     print(f"[ROI] using polygon: {court_polygon.tolist()}")
+    ball_tracker = BallTracker()
     events_log = []
     last_event_text = ""
     last_event_until = -1.0
@@ -76,6 +78,7 @@ def main():
             t_sec  = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0
             tracks = tracker.update(frame)
             tracks = filter_tracks_in_court(tracks, court_polygon, max_persons=4)
+            ball_state = ball_tracker.update(frame, t_sec, tracks, court_polygon)
             poses  = poser.estimate_for_tracks(frame, tracks)
 
             new_events = classifier.update(
@@ -92,10 +95,11 @@ def main():
 
             draw_tracks(frame, tracks)
             draw_poses(frame, poses)
+            draw_ball(frame, ball_state)
             draw_court(frame, court_polygon)
 
             cv2.putText(frame,
-                        f"frame={frame_idx} t={t_sec:6.2f}s dets={len(tracks)} poses={len(poses)}",
+                        f"frame={frame_idx} t={t_sec:6.2f}s dets={len(tracks)} poses={len(poses)} ball={ball_state['source']}",
                         (15, 35), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
             
             if t_sec <= last_event_until and last_event_text:
