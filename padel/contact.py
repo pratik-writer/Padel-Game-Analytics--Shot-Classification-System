@@ -10,9 +10,9 @@ from typing import Optional, Dict, List
 # ----------------------------- Tunables -----------------------------
 WINDOW           = 7      # frames buffered for in/out velocity estimation (must be odd)
 HALF             = WINDOW // 2
-MIN_SPEED        = 60.0   # px/s — both incoming and outgoing must exceed this
-TURN_ANGLE_MIN   = 50.0   # degrees — angular change required to count as contact
-WRIST_DIST_MAX   = 75.0   # px — contact point must be within this of a wrist
+MIN_SPEED        = 40.0   # px/s — both incoming and outgoing must exceed this
+TURN_ANGLE_MIN   = 35.0   # degrees — angular change required to count as contact
+WRIST_DIST_MAX   = 110.0  # px — contact point must be within this of a wrist
 PLAYER_COOLDOWN  = 0.5    # s — minimum gap between two contacts on same player
 # ---------------------------------------------------------------------
 
