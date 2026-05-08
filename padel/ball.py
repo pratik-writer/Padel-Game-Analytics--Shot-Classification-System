@@ -6,19 +6,22 @@ from collections import deque
 # Tunable hyperparameters — adjust here, not inside the class
 # ---------------------------------------------------------------------------
 BOOTSTRAP_FRAMES   = 45     # frames to build static mask (~1.5 s @ 30 fps)
-HSV_S_MAX          = 55     # max saturation to be considered "white"
-HSV_V_MIN          = 190    # min brightness  to be considered "white"
-MOTION_THRESH      = 18     # absdiff threshold to count as "moving"
+HSV_S_MAX          = 70     # max saturation to be considered "white"
+HSV_V_MIN          = 160    # min brightness  to be considered "white" (lowered for blur)
+MOTION_THRESH      = 14     # absdiff threshold to count as "moving" (lowered for faint blur)
 AREA_MIN           = 1      # min blob area in px²
-AREA_MAX           = 40     # max blob area in px² (5 px ball ≈ 20 px²)
-ASPECT_MIN         = 0.3    # min w/h ratio
-ASPECT_MAX         = 3.0    # max w/h ratio
-GATE_RADIUS_MIN    = 30     # minimum search radius around predicted position (px)
-GATE_RADIUS_K      = 3.0    # dynamic gate = K * speed (px/s) * dt
-VEL_EMA_ALPHA      = 0.55   # velocity smoothing (higher = tracks fast changes better)
-MAX_PREDICTED      = 8      # max consecutive predicted frames before declaring "lost"
+AREA_MAX           = 40     # max blob area in px² for compact ball
+STREAK_AREA_MAX    = 250    # max blob area for a motion-blurred streak
+ASPECT_MIN         = 0.3    # min w/h ratio (compact)
+ASPECT_MAX         = 3.0    # max w/h ratio (compact)
+STREAK_ASPECT_MAX  = 10.0   # streak may be very elongated
+GATE_RADIUS_MIN    = 35     # minimum search radius around predicted position (px)
+GATE_RADIUS_K      = 3.5    # dynamic gate = K * speed (px/s) * dt
+VEL_EMA_ALPHA      = 0.6    # velocity smoothing
+MAX_PREDICTED      = 15     # max consecutive predicted frames before declaring "lost"
 PERSON_SHRINK      = 4      # px to shrink person bbox inward before masking
-TRAIL_LEN          = 20     # number of past positions to draw as trail
+TRAIL_LEN          = 25     # number of past positions to draw as trail
+ALIGN_DOT_MIN      = 0.4    # streak must point along velocity (cos angle ≥ 0.4)
 
 SOURCE_YOLO      = "yolo"
 SOURCE_WHITE     = "white"
@@ -194,8 +197,7 @@ class BallTracker:
         speed = (self._vxy[0]**2 + self._vxy[1]**2) ** 0.5   # px/s
         gate  = max(GATE_RADIUS_MIN, GATE_RADIUS_K * speed * dt)
 
-        # Normalised expected direction
-        if speed > 1.0 and self._vxy is not None:
+        if speed > 1.0:
             ex, ey = self._vxy[0] / speed, self._vxy[1] / speed
         else:
             ex, ey = 0.0, 0.0
@@ -205,32 +207,65 @@ class BallTracker:
             area = int(stats[i, cv2.CC_STAT_AREA])
             w    = int(stats[i, cv2.CC_STAT_WIDTH])
             h    = int(stats[i, cv2.CC_STAT_HEIGHT])
-            if not (AREA_MIN <= area <= AREA_MAX):
-                continue
-            aspect = w / max(1, h)
-            if not (ASPECT_MIN <= aspect <= ASPECT_MAX):
+            cx   = float(centroids[i][0])
+            cy   = float(centroids[i][1])
+            aspect_long = max(w, h) / max(1, min(w, h))   # always ≥ 1.0
+
+            # --- Classify candidate as compact ball OR streak ---
+            is_compact = (AREA_MIN <= area <= AREA_MAX
+                          and aspect_long <= ASPECT_MAX / max(0.01, ASPECT_MIN) ** 0)
+            # simpler: compact if area+aspect within compact bounds
+            is_compact = (AREA_MIN <= area <= AREA_MAX
+                          and (1.0 / aspect_long) >= ASPECT_MIN)
+
+            is_streak = False
+            streak_endpoint = None
+            if speed > 50.0 and not is_compact:
+                # Streak heuristic — only when we already know ball is moving fast
+                if (AREA_MIN <= area <= STREAK_AREA_MAX
+                        and aspect_long <= STREAK_ASPECT_MAX):
+                    # Streak must point along predicted velocity direction
+                    # Use bbox long-axis as approximate streak direction
+                    if w >= h:
+                        sdx, sdy = 1.0, 0.0
+                        # leading endpoint along velocity:
+                        ep_left  = (stats[i, cv2.CC_STAT_LEFT], cy)
+                        ep_right = (stats[i, cv2.CC_STAT_LEFT] + w - 1, cy)
+                    else:
+                        sdx, sdy = 0.0, 1.0
+                        ep_left  = (cx, stats[i, cv2.CC_STAT_TOP])
+                        ep_right = (cx, stats[i, cv2.CC_STAT_TOP] + h - 1)
+                    align = abs(sdx * ex + sdy * ey)
+                    if align >= ALIGN_DOT_MIN:
+                        is_streak = True
+                        # leading endpoint = whichever is further along velocity
+                        d_left  = (ep_left[0]  - (x_pred or cx)) * ex + (ep_left[1]  - (y_pred or cy)) * ey
+                        d_right = (ep_right[0] - (x_pred or cx)) * ex + (ep_right[1] - (y_pred or cy)) * ey
+                        streak_endpoint = ep_right if d_right > d_left else ep_left
+
+            if not (is_compact or is_streak):
                 continue
 
-            cx, cy = float(centroids[i][0]), float(centroids[i][1])
+            cand_xy = streak_endpoint if is_streak else (cx, cy)
 
             if x_pred is not None:
-                dist = ((cx - x_pred)**2 + (cy - y_pred)**2) ** 0.5
+                dist = ((cand_xy[0] - x_pred)**2 + (cand_xy[1] - y_pred)**2) ** 0.5
                 if dist > gate:
                     continue
-                # Alignment bonus: prefer blobs in the expected direction
                 if speed > 1.0:
-                    ax = cx - x_pred; ay = cy - y_pred
+                    ax = cand_xy[0] - x_pred; ay = cand_xy[1] - y_pred
                     an = max(1e-6, (ax**2 + ay**2) ** 0.5)
                     alignment = -(ex * ax/an + ey * ay/an)   # -1=perfect align
                     score = dist + 8.0 * alignment
                 else:
                     score = dist
+                if is_streak:
+                    score -= 5.0   # small bonus: streaks are strong evidence at high speed
             else:
-                # No prediction: prefer larger blobs (more reliable)
                 score = -area
 
             if score < best_score:
-                best_score, best_xy = score, (cx, cy)
+                best_score, best_xy = score, cand_xy
 
         return best_xy
 
