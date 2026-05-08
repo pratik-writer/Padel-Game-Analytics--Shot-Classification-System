@@ -118,9 +118,9 @@ from typing import Optional, Dict, List
 
 VIS_THRESH         = 0.3
 SMASH_Y_RATIO      = 0.20
-SIDE_X_RATIO       = 0.10
-WRIST_SPEED_TRIG   = 0.8      
-ELBOW_ANGLE_MIN    = 130.0    
+SIDE_X_RATIO       = 0.12
+WRIST_SPEED_TRIG   = 0.95     
+ELBOW_ANGLE_MIN    = 135.0    
 COOLDOWN_SEC       = 0.7
 HISTORY_LEN        = 8
 SPEED_BUFFER_LEN   = 5        
