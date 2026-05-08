@@ -3,10 +3,12 @@ import os
 from pathlib import Path
 from tracker import Tracker
 from pose import PoseEstimator, POSE_CONNECTIONS
+from classifier import ShotClassifier
 from court_roi import load_or_calibrate, filter_tracks_in_court, draw_court
 from ball import BallTracker, draw_ball
 from contact import ContactDetector
 from shot_classifier_v2 import classify as classify_shot
+from event_merger import EventMerger
 
 INPUT_PATH  = "data/input.mp4"
 OUTPUT_PATH = "outputs/output.mp4"
@@ -61,10 +63,12 @@ def main():
 
     tracker  = Tracker(weights="yolov8s.pt", base_conf=0.10, imgsz=1280)
     poser    = PoseEstimator(model_complexity=1)
+    pose_classifier = ShotClassifier()
     court_polygon = load_or_calibrate(INPUT_PATH)
     print(f"[ROI] using polygon: {court_polygon.tolist()}")
     ball_tracker = BallTracker()
     contact_det  = ContactDetector()
+    merger       = EventMerger()
     events_log = []
     last_event_text = ""
     last_event_until = -1.0
@@ -84,16 +88,23 @@ def main():
 
             new_events = []
             contact = contact_det.update(frame_idx, t_sec, ball_state, poses)
-            if contact is not None:
-                shot = classify_shot(contact, poses)
-                if shot is not None:
-                    new_events.append(shot)
+            contact_shot = classify_shot(contact, poses) if contact is not None else None
+
+            pose_shots = pose_classifier.update(
+                frame_idx, t_sec, poses,
+                racket_centers=[(0.5*(t["bbox"][0]+t["bbox"][2]),
+                                 0.5*(t["bbox"][1]+t["bbox"][3]))
+                                for t in tracks if t["name"] == "racket"],
+            )
+            pose_shot = pose_shots[0] if pose_shots else None
+
+            new_events = merger.push(t_sec, contact_shot=contact_shot, pose_shot=pose_shot)
 
             for ev in new_events:
                 events_log.append(ev)
-                last_event_text = f"P{ev.player_id}: {ev.shot_type} ({ev.confidence})"
+                last_event_text = f"P{ev.player_id}: {ev.shot_type} [{ev.confidence}]"
                 last_event_until = t_sec + 1.5
-                print(f"[SHOT] t={ev.timestamp:6.2f}s  P{ev.player_id}  {ev.shot_type}  conf={ev.confidence}")
+                print(f"[SHOT] t={ev.timestamp:6.2f}s  P{ev.player_id}  {ev.shot_type}  conf={ev.confidence}  src={ev.source}")
 
             draw_tracks(frame, tracks)
             draw_poses(frame, poses)
@@ -116,9 +127,14 @@ def main():
         cap.release()
         out.release()
         poser.close()
+    # Drain any pending merger events that arrived in the last 0.5s
+    for ev in merger.flush():
+        events_log.append(ev)
+        print(f"[SHOT] t={ev.timestamp:6.2f}s  P{ev.player_id}  {ev.shot_type}  conf={ev.confidence}  src={ev.source}")
     print(f"[SUMMARY] {len(events_log)} shot events")
     from collections import Counter
-    print(Counter(e.shot_type for e in events_log))
+    print("by type:", Counter(e.shot_type for e in events_log))
+    print("by confidence:", Counter(e.confidence for e in events_log))
     print(f"[DONE] wrote {frame_idx} frames -> {OUTPUT_PATH}")
 
 if __name__ == "__main__":
