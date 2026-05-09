@@ -41,7 +41,7 @@ class PoseEstimator:
         self.pose.close()
 
     def estimate_for_tracks(self, frame, tracks):
-        """Return {track_id: {keypoint: (x_frame, y_frame, visibility)}} for persons only."""
+        # returns {track_id: {keypoint_name: (x_frame, y_frame, visibility)}} for persons only
         H, W = frame.shape[:2]
         out = {}
         for t in tracks:

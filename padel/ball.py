@@ -2,26 +2,23 @@ import cv2
 import numpy as np
 from collections import deque
 
-# ---------------------------------------------------------------------------
-# Tunable hyperparameters — adjust here, not inside the class
-# ---------------------------------------------------------------------------
-BOOTSTRAP_FRAMES   = 45     # frames to build static mask (~1.5 s @ 30 fps)
-HSV_S_MAX          = 70     # max saturation to be considered "white"
-HSV_V_MIN          = 160    # min brightness  to be considered "white" (lowered for blur)
-MOTION_THRESH      = 14     # absdiff threshold to count as "moving" (lowered for faint blur)
-AREA_MIN           = 1      # min blob area in px²
-AREA_MAX           = 40     # max blob area in px² for compact ball
-STREAK_AREA_MAX    = 250    # max blob area for a motion-blurred streak
-ASPECT_MIN         = 0.3    # min w/h ratio (compact)
-ASPECT_MAX         = 3.0    # max w/h ratio (compact)
-STREAK_ASPECT_MAX  = 10.0   # streak may be very elongated
-GATE_RADIUS_MIN    = 35     # minimum search radius around predicted position (px)
-GATE_RADIUS_K      = 3.5    # dynamic gate = K * speed (px/s) * dt
-VEL_EMA_ALPHA      = 0.6    # velocity smoothing
-MAX_PREDICTED      = 15     # max consecutive predicted frames before declaring "lost"
-PERSON_SHRINK      = 4      # px to shrink person bbox inward before masking
-TRAIL_LEN          = 25     # number of past positions to draw as trail
-ALIGN_DOT_MIN      = 0.4    # streak must point along velocity (cos angle ≥ 0.4)
+BOOTSTRAP_FRAMES   = 45     # frames used to build the static-white mask
+HSV_S_MAX          = 70
+HSV_V_MIN          = 160
+MOTION_THRESH      = 14
+AREA_MIN           = 1
+AREA_MAX           = 40     # px^2 for a compact ball
+STREAK_AREA_MAX    = 250    # px^2 for a motion-blurred streak
+ASPECT_MIN         = 0.3
+ASPECT_MAX         = 3.0
+STREAK_ASPECT_MAX  = 10.0
+GATE_RADIUS_MIN    = 35
+GATE_RADIUS_K      = 3.5    # dynamic gate = K * speed * dt
+VEL_EMA_ALPHA      = 0.6
+MAX_PREDICTED      = 15     # consecutive predicted frames before declaring 'lost'
+PERSON_SHRINK      = 4      # px shrunk inward off person bbox before masking
+TRAIL_LEN          = 25
+ALIGN_DOT_MIN      = 0.4    # streak must point along velocity (cos angle)
 
 SOURCE_YOLO      = "yolo"
 SOURCE_WHITE     = "white"
@@ -29,59 +26,31 @@ SOURCE_PREDICTED = "predicted"
 SOURCE_LOST      = "lost"
 
 _SRC_COLOR = {
-    SOURCE_YOLO:      (0, 255, 0),       # green   — high confidence
-    SOURCE_WHITE:     (0, 215, 255),     # yellow  — motion+white candidate
-    SOURCE_PREDICTED: (180, 180, 180),   # gray    — extrapolated
-    SOURCE_LOST:      (0, 0, 200),       # dark red — for reference only
+    SOURCE_YOLO:      (0, 255, 0),
+    SOURCE_WHITE:     (0, 215, 255),
+    SOURCE_PREDICTED: (180, 180, 180),
+    SOURCE_LOST:      (0, 0, 200),
 }
 
-# ---------------------------------------------------------------------------
 
 class BallTracker:
-    """
-    Hybrid motion∩white ball tracker.
-
-    update() must be called every frame in order.
-    Returns a state dict; use draw_ball() for visualization.
-    """
-
     def __init__(self):
-        self._boot_buf: list     = []           # bootstrap grayscale frames
-        self._static_mask        = None         # always-white pixels (lines/net)
-        self._gray_buf           = deque(maxlen=3)  # rolling grey frames for motion
+        self._boot_buf: list = []
+        self._static_mask    = None
+        self._gray_buf       = deque(maxlen=3)
 
-        # Tracker state
-        self._xy   = None           # (float, float) | None
-        self._vxy  = (0.0, 0.0)     # velocity in px / second
-        self._t    = None           # timestamp of last observation (seconds)
+        self._xy   = None
+        self._vxy  = (0.0, 0.0)        # px/s
+        self._t    = None
         self._src  = SOURCE_LOST
-        self._age  = 0              # consecutive predicted/lost frames
+        self._age  = 0
         self._trail: deque = deque(maxlen=TRAIL_LEN)
-
-    # ------------------------------------------------------------------
-    # Public API
-    # ------------------------------------------------------------------
 
     def update(self, frame: np.ndarray, t_sec: float,
                tracks: list, polygon: np.ndarray) -> dict:
-        """
-        frame   : BGR numpy array
-        t_sec   : current timestamp in seconds
-        tracks  : list of track dicts from tracker.update()
-        polygon : court ROI polygon (numpy int32 array of shape (N,2))
-
-        Returns:
-            {
-              "xy"    : (x, y) | None,
-              "vxy"   : (vx, vy) in px/s,
-              "source": one of SOURCE_* constants,
-              "age"   : int (consecutive non-observed frames),
-              "trail" : list of (x, y, source) tuples
-            }
-        """
+        # returns: {xy, vxy, source, age, trail}
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-        # ---- Bootstrap: collect frames to build static mask ----
         if self._static_mask is None:
             self._boot_buf.append(gray.astype(np.float32))
             self._gray_buf.append(gray)
@@ -93,14 +62,12 @@ class BallTracker:
         H, W = frame.shape[:2]
         dt = max(1e-3, t_sec - self._t) if self._t is not None else 1 / 30.0
 
-        # ---- Step 1: Predict next position ----
         x_pred, y_pred = None, None
         if self._xy is not None:
             vx, vy = self._vxy
             x_pred = float(np.clip(self._xy[0] + vx * dt, 0, W - 1))
             y_pred = float(np.clip(self._xy[1] + vy * dt, 0, H - 1))
 
-        # ---- Step 2: YOLO anchor ----
         yolo_xy = self._best_yolo_hit(tracks, x_pred, y_pred)
         if yolo_xy is not None:
             self._update_state(yolo_xy, t_sec, dt, SOURCE_YOLO)
@@ -108,7 +75,6 @@ class BallTracker:
             self._t = t_sec
             return self._result()
 
-        # ---- Step 3: Motion ∩ White candidate search ----
         self._gray_buf.append(gray)
         candidate = None
         if len(self._gray_buf) >= 2:
@@ -117,14 +83,11 @@ class BallTracker:
 
         if candidate is not None:
             self._update_state(candidate, t_sec, dt, SOURCE_WHITE)
-
-        # ---- Step 4: Fallback to prediction ----
         elif self._xy is not None and self._age < MAX_PREDICTED and x_pred is not None:
             self._xy  = (x_pred, y_pred)
             self._src = SOURCE_PREDICTED
             self._age += 1
             self._trail.append((x_pred, y_pred, SOURCE_PREDICTED))
-
         else:
             self._src = SOURCE_LOST
             self._age += 1
@@ -132,16 +95,10 @@ class BallTracker:
         self._t = t_sec
         return self._result()
 
-    # ------------------------------------------------------------------
-    # Internal helpers
-    # ------------------------------------------------------------------
-
     def _build_static_mask(self, frame, polygon):
         H, W = frame.shape[:2]
         stack  = np.stack(self._boot_buf, axis=0)
         median = np.median(stack, axis=0).astype(np.uint8)
-
-        # Pixels that are always bright white = court lines, net top, boards
         _, white_static = cv2.threshold(median, 220, 255, cv2.THRESH_BINARY)
 
         roi_mask = np.zeros((H, W), dtype=np.uint8)
@@ -149,26 +106,22 @@ class BallTracker:
 
         self._static_mask = cv2.bitwise_and(white_static, roi_mask)
         n_px = int(np.sum(self._static_mask > 0))
-        print(f"[BALL] bootstrap done — static mask has {n_px} always-white px")
+        print(f"[BALL] bootstrap done. static mask has {n_px} always-white px")
         self._boot_buf.clear()
 
     def _candidate_mask(self, frame, gray, tracks, polygon, H, W):
-        # --- Motion mask (moving pixels vs last 1–2 frames) ---
         prev1 = self._gray_buf[-2]
         motion = cv2.absdiff(gray, prev1)
         if len(self._gray_buf) == 3:
             motion = cv2.max(motion, cv2.absdiff(gray, self._gray_buf[0]))
         _, motion_mask = cv2.threshold(motion, MOTION_THRESH, 255, cv2.THRESH_BINARY)
 
-        # --- White mask (HSV) ---
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         white_mask = cv2.inRange(hsv, (0, 0, HSV_V_MIN), (180, HSV_S_MAX, 255))
 
-        # --- Court ROI mask ---
         roi_mask = np.zeros((H, W), dtype=np.uint8)
         cv2.fillPoly(roi_mask, [polygon], 255)
 
-        # --- Person exclusion mask ---
         person_mask = np.zeros((H, W), dtype=np.uint8)
         for t in tracks:
             if t["name"] == "person":
@@ -179,12 +132,10 @@ class BallTracker:
                 if x2 > x1 and y2 > y1:
                     cv2.rectangle(person_mask, (x1, y1), (x2, y2), 255, -1)
 
-        # --- Combine ---
         combined = motion_mask & white_mask & roi_mask
         combined = combined & ~self._static_mask
         combined = combined & ~person_mask
 
-        # Small dilation to merge sub-pixel ball fragments
         kernel = np.ones((2, 2), np.uint8)
         combined = cv2.dilate(combined, kernel, iterations=1)
         return combined
@@ -194,7 +145,7 @@ class BallTracker:
         if num <= 1:
             return None
 
-        speed = (self._vxy[0]**2 + self._vxy[1]**2) ** 0.5   # px/s
+        speed = (self._vxy[0]**2 + self._vxy[1]**2) ** 0.5
         gate  = max(GATE_RADIUS_MIN, GATE_RADIUS_K * speed * dt)
 
         if speed > 1.0:
@@ -209,26 +160,18 @@ class BallTracker:
             h    = int(stats[i, cv2.CC_STAT_HEIGHT])
             cx   = float(centroids[i][0])
             cy   = float(centroids[i][1])
-            aspect_long = max(w, h) / max(1, min(w, h))   # always ≥ 1.0
+            aspect_long = max(w, h) / max(1, min(w, h))
 
-            # --- Classify candidate as compact ball OR streak ---
-            is_compact = (AREA_MIN <= area <= AREA_MAX
-                          and aspect_long <= ASPECT_MAX / max(0.01, ASPECT_MIN) ** 0)
-            # simpler: compact if area+aspect within compact bounds
             is_compact = (AREA_MIN <= area <= AREA_MAX
                           and (1.0 / aspect_long) >= ASPECT_MIN)
 
             is_streak = False
             streak_endpoint = None
             if speed > 50.0 and not is_compact:
-                # Streak heuristic — only when we already know ball is moving fast
                 if (AREA_MIN <= area <= STREAK_AREA_MAX
                         and aspect_long <= STREAK_ASPECT_MAX):
-                    # Streak must point along predicted velocity direction
-                    # Use bbox long-axis as approximate streak direction
                     if w >= h:
                         sdx, sdy = 1.0, 0.0
-                        # leading endpoint along velocity:
                         ep_left  = (stats[i, cv2.CC_STAT_LEFT], cy)
                         ep_right = (stats[i, cv2.CC_STAT_LEFT] + w - 1, cy)
                     else:
@@ -238,7 +181,6 @@ class BallTracker:
                     align = abs(sdx * ex + sdy * ey)
                     if align >= ALIGN_DOT_MIN:
                         is_streak = True
-                        # leading endpoint = whichever is further along velocity
                         d_left  = (ep_left[0]  - (x_pred or cx)) * ex + (ep_left[1]  - (y_pred or cy)) * ey
                         d_right = (ep_right[0] - (x_pred or cx)) * ex + (ep_right[1] - (y_pred or cy)) * ey
                         streak_endpoint = ep_right if d_right > d_left else ep_left
@@ -255,12 +197,12 @@ class BallTracker:
                 if speed > 1.0:
                     ax = cand_xy[0] - x_pred; ay = cand_xy[1] - y_pred
                     an = max(1e-6, (ax**2 + ay**2) ** 0.5)
-                    alignment = -(ex * ax/an + ey * ay/an)   # -1=perfect align
+                    alignment = -(ex * ax/an + ey * ay/an)
                     score = dist + 8.0 * alignment
                 else:
                     score = dist
                 if is_streak:
-                    score -= 5.0   # small bonus: streaks are strong evidence at high speed
+                    score -= 5.0
             else:
                 score = -area
 
@@ -281,7 +223,6 @@ class BallTracker:
             return to_center(balls[0])
         if x_pred is None:
             return to_center(balls[0])
-        # Multiple YOLO balls: pick nearest to prediction
         return min(
             (to_center(b) for b in balls),
             key=lambda p: (p[0]-x_pred)**2 + (p[1]-y_pred)**2
@@ -311,14 +252,8 @@ class BallTracker:
         }
 
 
-# ---------------------------------------------------------------------------
-# Visualization helper (called from main.py)
-# ---------------------------------------------------------------------------
-
 def draw_ball(frame: np.ndarray, ball_state: dict) -> None:
     trail = ball_state.get("trail", [])
-
-    # Draw trail polyline
     for i in range(1, len(trail)):
         x0, y0, _  = trail[i - 1]
         x1, y1, s1 = trail[i]
@@ -327,13 +262,11 @@ def draw_ball(frame: np.ndarray, ball_state: dict) -> None:
                  (int(x1), int(y1)),
                  _SRC_COLOR.get(s1, (255, 255, 255)), 1)
 
-    # Draw current ball dot
     xy  = ball_state.get("xy")
     src = ball_state.get("source", SOURCE_LOST)
     if xy is not None and src != SOURCE_LOST:
         col = _SRC_COLOR.get(src, (255, 255, 255))
         cv2.circle(frame, (int(xy[0]), int(xy[1])), 5, col, -1)
-        # Single-letter source tag next to dot
         cv2.putText(frame, src[0].upper(),
                     (int(xy[0]) + 7, int(xy[1]) - 4),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.45, col, 1)

@@ -1,17 +1,10 @@
-"""
-Event merger: combine contact-based and pose-based shot events.
-
-A shot exists if EITHER signal fires. If BOTH signals fire for the same player
-within MERGE_WINDOW seconds, they are combined into a single high-confidence
-event. The merger holds incoming events for that window before emitting them
-downstream, so opportunistic agreement between the two signals is captured.
-"""
 from collections import deque
 from dataclasses import dataclass
 from typing import Optional, List, Tuple
 
-MERGE_WINDOW = 0.4      # seconds — two signals within this gap = same shot
-HOLD_BUFFER  = 0.5      # seconds — emit events after this delay (must >= MERGE_WINDOW)
+MERGE_WINDOW = 0.4      # s; two signals within this gap are treated as the same shot
+HOLD_BUFFER  = 0.5      # s; emit events after this delay so the partner signal can arrive
+
 
 @dataclass
 class MergedShot:
@@ -27,14 +20,8 @@ class MergedShot:
 
 
 class EventMerger:
-    """
-    Streams in (timestamp, [contact_shot_or_None], [pose_shot_or_None]) every frame.
-    Emits MergedShots with at least HOLD_BUFFER seconds of delay (so we can wait
-    for the other signal). Call flush() at end of stream to drain remaining events.
-    """
-
     def __init__(self):
-        # Each pending: (deadline_t, source_kind, shot_obj, player_id)
+        # pending item: (deadline_t, kind, shot_obj, player_id)
         self._pending: deque = deque()
 
     def push(self, t_sec: float,
@@ -49,25 +36,15 @@ class EventMerger:
         return self._flush_ready(t_sec)
 
     def flush(self) -> List[MergedShot]:
-        # Force-drain everything still pending.
         return self._flush_ready(t_sec=float("inf"))
-
-    # ------------------------------------------------------------------
 
     def _flush_ready(self, t_sec: float) -> List[MergedShot]:
         emitted: List[MergedShot] = []
-        # Move all items whose deadline has passed into a working list
-        ready = []
-        kept  = deque()
+        ready, kept = [], deque()
         for item in self._pending:
-            if item[0] <= t_sec:
-                ready.append(item)
-            else:
-                kept.append(item)
+            (ready if item[0] <= t_sec else kept).append(item)
         self._pending = kept
 
-        # Group ready items by player_id; within a player, walk in time order
-        # and pair contact+pose events that fall within MERGE_WINDOW.
         by_pid: dict = {}
         for it in ready:
             by_pid.setdefault(it[3], []).append(it)
@@ -78,7 +55,6 @@ class EventMerger:
             for i, (_, kind_i, shot_i, _) in enumerate(items):
                 if used[i]:
                     continue
-                # Look for a pairing partner of opposite kind within window
                 partner_idx = None
                 for j in range(i + 1, len(items)):
                     if used[j]:
@@ -102,8 +78,6 @@ class EventMerger:
         return emitted
 
     def _merge_pair(self, contact_shot, pose_shot) -> MergedShot:
-        # Prefer contact-based shot_type (it uses ball trajectory, more reliable for FH/BH)
-        # but fall back to pose if contact's contact_xy was central/ambiguous.
         shot_type = contact_shot.shot_type or pose_shot.shot_type
         side      = contact_shot.side      or pose_shot.side
         return MergedShot(
@@ -120,7 +94,6 @@ class EventMerger:
 
     def _wrap_solo(self, kind: str, shot) -> MergedShot:
         if kind == "contact":
-            # contact-only events are still trustworthy (geometry-based)
             confidence = "med" if getattr(shot, "confidence", "med") != "low" else "low"
             return MergedShot(
                 frame=shot.frame,
@@ -133,9 +106,7 @@ class EventMerger:
                 contact_xy=getattr(shot, "contact_xy", None),
                 out_dir=getattr(shot, "out_dir", None),
             )
-        # pose-only:
-        # classifier marks confidence = 'high' or 'med' internally based on
-        # speed and racket proximity. Demote: 'high' -> 'med', 'med' -> 'low'.
+        # pose-only events are demoted: high -> med, med -> low
         pose_conf = getattr(shot, "confidence", "med")
         confidence = "med" if pose_conf == "high" else "low"
         return MergedShot(

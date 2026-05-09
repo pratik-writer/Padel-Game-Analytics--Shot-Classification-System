@@ -1,7 +1,3 @@
-"""
-Shot classifier v2 — runs ONLY on contact events from contact.py.
-Uses ball contact position relative to player body + wrist height to classify.
-"""
 from dataclasses import dataclass
 from typing import Optional
 
@@ -10,6 +6,7 @@ SMASH_Y_RATIO       = 0.20    # wrist must be this fraction of torso above shoul
 SIDE_X_MIN_RATIO    = 0.10    # min |contact_x - body_cx| in shoulder-widths
 VIS_THRESH          = 0.3
 
+
 @dataclass
 class ShotEvent:
     frame: int
@@ -17,25 +14,18 @@ class ShotEvent:
     player_id: int
     shot_type: str        # 'Forehand' | 'Backhand' | 'Serve/Smash'
     side: str             # 'dominant' | 'non-dominant' | 'overhead'
-    confidence: str       # inherited from contact event
+    confidence: str
     contact_xy: tuple
-    out_dir: tuple        # outgoing ball direction (for direction analytics later)
+    out_dir: tuple        # outgoing ball direction
 
 
 def classify(contact_event, poses) -> Optional[ShotEvent]:
-    """
-    contact_event : ContactEvent (from contact.py)
-    poses         : {player_id: {kp_name: (x,y,vis)}} at contact frame
-
-    Returns ShotEvent or None (if pose missing for the contacted player).
-    """
     pid = contact_event.player_id
     kps = poses.get(pid)
     if kps is None:
         return None
 
-    # Need both shoulders + wrist on the side where contact happened
-    side_kp    = contact_event.wrist_side    # 'r' or 'l'
+    side_kp    = contact_event.wrist_side
     wrist_k    = f"{side_kp}_wrist"
     shoulder_k = f"{side_kp}_shoulder"
     other_sh   = "l_shoulder" if side_kp == "r" else "r_shoulder"
@@ -53,8 +43,7 @@ def classify(contact_event, poses) -> Optional[ShotEvent]:
     torso_h_est = shoulder_w * 1.5
     cx, cy      = contact_event.contact_xy
 
-    # --- Serve/Smash: wrist clearly above shoulder at contact ---
-    # (image y grows downward, so smaller wy = higher position)
+    # image y grows downward, so smaller wy means higher position
     if (sy - wy) > SMASH_Y_RATIO * torso_h_est:
         return ShotEvent(
             frame=contact_event.frame,
@@ -67,17 +56,11 @@ def classify(contact_event, poses) -> Optional[ShotEvent]:
             out_dir=contact_event.out_dir,
         )
 
-    # --- Forehand vs Backhand: contact x relative to body center ---
     dx = cx - body_cx
-    min_dx = SIDE_X_MIN_RATIO * shoulder_w
-    if abs(dx) < min_dx:
-        # Contact too close to body center — ambiguous; skip (rare)
+    if abs(dx) < SIDE_X_MIN_RATIO * shoulder_w:
         return None
 
-    # For right-handed player: contact RIGHT of body center → Forehand
-    # (For left-handed it would be inverted; documented assumption)
     on_dominant_side = (dx > 0) if ASSUME_RIGHT_HANDED else (dx < 0)
-
     shot_type = "Forehand" if on_dominant_side else "Backhand"
     side      = "dominant" if on_dominant_side else "non-dominant"
 

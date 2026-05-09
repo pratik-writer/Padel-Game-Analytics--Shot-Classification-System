@@ -7,8 +7,6 @@ import numpy as np
 ROI_FILE = "court_roi.json"
 
 def calibrate(video_path: str, roi_file: str = ROI_FILE) -> list:
-    """Open first frame; user clicks 4 corner points (any order) of the main court.
-    Saves polygon to roi_file. Press 'r' to reset, ENTER when done, ESC to abort."""
     cap = cv2.VideoCapture(video_path)
     ok, frame = cap.read()
     cap.release()
@@ -51,8 +49,7 @@ def calibrate(video_path: str, roi_file: str = ROI_FILE) -> list:
 
 
 def load_or_calibrate(video_path: str, roi_file: str = ROI_FILE) -> np.ndarray:
-    # Headless override: env var PADEL_ROI = "x1,y1;x2,y2;x3,y3;x4,y4"
-    env_roi = os.environ.get("PADEL_ROI")
+    env_roi = os.environ.get("PADEL_ROI")        # "x1,y1;x2,y2;x3,y3;x4,y4"
     if env_roi:
         pts = [list(map(int, p.split(","))) for p in env_roi.split(";")]
         if len(pts) >= 3:
@@ -78,8 +75,6 @@ def foot_point(bbox):
 
 
 def filter_tracks_in_court(tracks, polygon: np.ndarray, max_persons: int = 4):
-    """Keep ball/racket as-is; for persons, keep only those with foot point inside
-    the polygon, then keep the top `max_persons` by bbox area."""
     persons, others = [], []
     for t in tracks:
         if t["name"] == "person":

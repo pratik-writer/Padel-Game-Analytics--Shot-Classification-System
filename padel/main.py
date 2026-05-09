@@ -90,7 +90,6 @@ def main():
             ball_state = ball_tracker.update(frame, t_sec, tracks, court_polygon)
             poses  = poser.estimate_for_tracks(frame, tracks)
 
-            # Bounce detection (rule-based: ball y-velocity sign change)
             ball_xy_for_bounce = ball_state.get("xy") if ball_state.get("source") in ("yolo", "white") else None
             bounce_ev = bounce_det.update(frame_idx, ball_xy_for_bounce)
 
@@ -120,7 +119,6 @@ def main():
             draw_ball(frame, ball_state)
             draw_court(frame, court_polygon)
 
-            # Show recent bounce as a red ring for ~0.4s
             for be in bounce_det.events[-5:]:
                 if 0 <= (t_sec - be.timestamp) <= 0.4:
                     cv2.circle(frame, (int(be.x), int(be.y)), 18, (0, 0, 255), 2)
@@ -135,7 +133,6 @@ def main():
                 cv2.putText(frame, last_event_text, (15, 75),
                             cv2.FONT_HERSHEY_SIMPLEX, 1.1, (0, 255, 255), 3)
 
-            # ---- Per-player counters (top-right) ----
             counts = player_counts(events_log)
             y = 35
             cv2.putText(frame, "Shot counts (FH / BH / SS)",
@@ -162,7 +159,7 @@ def main():
         cap.release()
         out.release()
         poser.close()
-    # Drain any pending merger events that arrived in the last 0.5s
+    # Drain pending merger events from the last 0.5s
     for ev in merger.flush():
         events_log.append(ev)
         event_logger.add(ev)
@@ -180,7 +177,6 @@ def main():
     print(f"[DONE] wrote {frame_idx} frames -> {OUTPUT_PATH}")
     print(f"[DONE] events.csv / events.json / summary.json -> outputs/")
 
-    # Render post-run dashboard PNG
     try:
         from dashboard import render as render_dashboard
         render_dashboard("outputs/summary.json", "outputs/dashboard.png")

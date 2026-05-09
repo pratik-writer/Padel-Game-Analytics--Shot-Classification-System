@@ -1,15 +1,10 @@
-"""
-Shot event logger and analytics.
-
-Collects MergedShot events during the run and exports them at the end.
-"""
 import csv
 import json
+import math
 from collections import Counter, defaultdict
-from dataclasses import asdict
 from pathlib import Path
-from typing import List
 
+# CSV / JSON columns written per shot
 CSV_FIELDS = [
     "frame", "timestamp", "player_id",
     "shot_type", "side", "confidence", "source",
@@ -20,25 +15,19 @@ CSV_FIELDS = [
 
 
 def _direction_label(out_dx, out_dy) -> str:
-    """Turn raw post-contact velocity into a coarse human-readable label.
-    Image coords: +x = right, +y = down (away from camera baseline if the
-    near court is at the bottom of the frame).
-    """
+    # image coords: +x = right, +y = down
     if out_dx is None or out_dy is None:
         return "unknown"
-    import math
-    speed = math.hypot(out_dx, out_dy)
-    if speed < 1e-3:
+    if math.hypot(out_dx, out_dy) < 1e-3:
         return "unknown"
-    # Depth (y) component vs lateral (x) component
     if abs(out_dy) > abs(out_dx) * 1.5:
         return "down-the-line" if out_dy > 0 else "lob/up-court"
     if abs(out_dx) > abs(out_dy) * 1.5:
         return "cross-left" if out_dx < 0 else "cross-right"
-    # Mixed direction
     depth   = "deep"  if out_dy > 0 else "up"
     lateral = "left"  if out_dx < 0 else "right"
     return f"{depth}-{lateral}"
+
 
 class EventLogger:
     def __init__(self, out_dir: str = "outputs"):
@@ -56,29 +45,24 @@ class EventLogger:
                bounces: list = None) -> dict:
         rows = [self._to_row(ev) for ev in self.events]
 
-        # CSV
         with (self.out_dir / csv_path).open("w", newline="", encoding="utf-8") as f:
             w = csv.DictWriter(f, fieldnames=CSV_FIELDS)
             w.writeheader()
             for r in rows:
                 w.writerow(r)
 
-        # JSON (events array)
         with (self.out_dir / json_path).open("w", encoding="utf-8") as f:
             json.dump(rows, f, indent=2)
 
-        # Analytics summary
         summary = self._build_summary(rows, bounces or [])
         with (self.out_dir / summary_path).open("w", encoding="utf-8") as f:
             json.dump(summary, f, indent=2)
 
         return summary
 
-    # ------------------------------------------------------------------
-
     def _to_row(self, ev) -> dict:
-        cxy = getattr(ev, "contact_xy", None) or (None, None)
-        odir = getattr(ev, "out_dir", None) or (None, None)
+        cxy  = getattr(ev, "contact_xy", None) or (None, None)
+        odir = getattr(ev, "out_dir",    None) or (None, None)
         return {
             "frame":      ev.frame,
             "timestamp":  round(ev.timestamp, 3),
@@ -87,8 +71,8 @@ class EventLogger:
             "side":       ev.side,
             "confidence": ev.confidence,
             "source":     ev.source,
-            "contact_x":  None if cxy[0] is None else round(cxy[0], 1),
-            "contact_y":  None if cxy[1] is None else round(cxy[1], 1),
+            "contact_x":  None if cxy[0]  is None else round(cxy[0],  1),
+            "contact_y":  None if cxy[1]  is None else round(cxy[1],  1),
             "out_dx":     None if odir[0] is None else round(odir[0], 3),
             "out_dy":     None if odir[1] is None else round(odir[1], 3),
             "direction":  _direction_label(odir[0], odir[1]),
@@ -98,35 +82,31 @@ class EventLogger:
         rows = rows if rows is not None else [self._to_row(e) for e in self.events]
         bounces = bounces or []
 
-        by_type    = Counter(e.shot_type  for e in self.events)
-        by_conf    = Counter(e.confidence for e in self.events)
-        by_source  = Counter(e.source     for e in self.events)
+        by_type      = Counter(e.shot_type  for e in self.events)
+        by_conf      = Counter(e.confidence for e in self.events)
+        by_source    = Counter(e.source     for e in self.events)
         by_direction = Counter(r["direction"] for r in rows)
-        per_player = defaultdict(lambda: Counter())
+        per_player   = defaultdict(lambda: Counter())
         for e in self.events:
             per_player[e.player_id][e.shot_type] += 1
 
-        # high/med-only counts (the "trust-it" view)
-        trusted   = [e for e in self.events if e.confidence in ("high", "med")]
+        trusted = [e for e in self.events if e.confidence in ("high", "med")]
         trusted_by_type = Counter(e.shot_type for e in trusted)
 
         return {
-            "total_events":          len(self.events),
-            "trusted_events":        len(trusted),
-            "by_shot_type":          dict(by_type),
-            "by_confidence":         dict(by_conf),
-            "by_source":             dict(by_source),
-            "by_direction":          dict(by_direction),
-            "trusted_by_shot_type":  dict(trusted_by_type),
-            "per_player": {
-                str(pid): dict(c) for pid, c in per_player.items()
-            },
-            "total_bounces":         len(bounces),
+            "total_events":         len(self.events),
+            "trusted_events":       len(trusted),
+            "by_shot_type":         dict(by_type),
+            "by_confidence":        dict(by_conf),
+            "by_source":            dict(by_source),
+            "by_direction":         dict(by_direction),
+            "trusted_by_shot_type": dict(trusted_by_type),
+            "per_player": {str(pid): dict(c) for pid, c in per_player.items()},
+            "total_bounces":        len(bounces),
         }
 
 
 def player_counts(events: list) -> dict:
-    """Live per-player Counter — used by main.py to draw on-video overlay."""
     pp = defaultdict(lambda: Counter())
     for e in events:
         pp[e.player_id][e.shot_type] += 1

@@ -1,35 +1,30 @@
-"""
-Contact detection: find frames where the ball trajectory bends sharply
-near a player's wrist. These are the only valid 'shot taken' moments.
-"""
 import math
 from collections import deque
 from dataclasses import dataclass
-from typing import Optional, Dict, List
+from typing import Optional, Dict
 
-# ----------------------------- Tunables -----------------------------
-WINDOW           = 7      # frames buffered for in/out velocity estimation (must be odd)
+WINDOW           = 7        # must be odd; split into in/out halves around the mid frame
 HALF             = WINDOW // 2
-MIN_SPEED        = 40.0   # px/s — both incoming and outgoing must exceed this
-TURN_ANGLE_MIN   = 35.0   # degrees — angular change required to count as contact
-WRIST_DIST_MAX   = 110.0  # px — contact point must be within this of a wrist
-PLAYER_COOLDOWN  = 0.5    # s — minimum gap between two contacts on same player
-# ---------------------------------------------------------------------
+MIN_SPEED        = 40.0     # px/s, both incoming and outgoing
+TURN_ANGLE_MIN   = 35.0     # degrees
+WRIST_DIST_MAX   = 110.0    # px from contact point to nearest wrist
+PLAYER_COOLDOWN  = 0.5      # s between two contacts on the same player
+
 
 @dataclass
 class ContactEvent:
-    frame: int          # frame index where contact occurred (mid-window)
-    timestamp: float    # seconds
-    player_id: int      # nearest player at contact moment
-    contact_xy: tuple   # (x, y) ball position at contact
-    in_dir:   tuple     # unit vector — incoming direction
-    out_dir:  tuple     # unit vector — outgoing direction
-    in_speed:  float    # px/s
-    out_speed: float    # px/s
-    turn_angle: float   # degrees
-    wrist_dist: float   # px to chosen wrist
-    wrist_side: str     # 'r' or 'l'
-    confidence: str     # 'high' / 'med' / 'low'
+    frame: int
+    timestamp: float
+    player_id: int
+    contact_xy: tuple
+    in_dir:   tuple        # unit vector
+    out_dir:  tuple        # unit vector
+    in_speed:  float       # px/s
+    out_speed: float       # px/s
+    turn_angle: float      # degrees
+    wrist_dist: float      # px
+    wrist_side: str        # 'r' or 'l'
+    confidence: str        # 'high' / 'med' / 'low'
 
 
 def _angle_deg(v1, v2):
@@ -47,11 +42,6 @@ def _unit(v):
 
 
 class ContactDetector:
-    """
-    Buffers (frame_idx, t, ball_xy, ball_source, poses) for the last WINDOW frames
-    and emits ContactEvents at the moment the ball trajectory bends near a wrist.
-    """
-
     def __init__(self):
         self.buf = deque(maxlen=WINDOW)
         self.last_event_t: Dict[int, float] = {}
@@ -64,20 +54,18 @@ class ContactDetector:
         if len(self.buf) < WINDOW:
             return None
 
-        # Need ball xy in BOTH halves of the window
-        first_half = list(self.buf)[:HALF + 1]   # includes mid
-        last_half  = list(self.buf)[HALF:]       # includes mid
+        first_half = list(self.buf)[:HALF + 1]
+        last_half  = list(self.buf)[HALF:]
         if any(b[2] is None for b in first_half) or any(b[2] is None for b in last_half):
             return None
 
         mid_frame, mid_t, mid_xy, mid_src, mid_poses = self.buf[HALF]
 
-        # Incoming velocity = (mid - start) / dt
-        x0, y0 = first_half[0][2]
+        x0, y0   = first_half[0][2]
         x_m, y_m = mid_xy
         x_e, y_e = last_half[-1][2]
-        dt_in  = mid_t - first_half[0][1]
-        dt_out = last_half[-1][1] - mid_t
+        dt_in    = mid_t - first_half[0][1]
+        dt_out   = last_half[-1][1] - mid_t
         if dt_in < 1e-3 or dt_out < 1e-3:
             return None
 
@@ -92,8 +80,7 @@ class ContactDetector:
         if turn < TURN_ANGLE_MIN:
             return None
 
-        # --- Find nearest wrist across all players & both arms at mid frame ---
-        best = None  # (dist, pid, side)
+        best = None
         for pid, kps in mid_poses.items():
             for side in ("r", "l"):
                 wk = f"{side}_wrist"
@@ -108,12 +95,10 @@ class ContactDetector:
 
         wrist_dist, pid, wside = best
 
-        # Per-player cooldown
         if (mid_t - self.last_event_t.get(pid, -1e9)) < PLAYER_COOLDOWN:
             return None
         self.last_event_t[pid] = mid_t
 
-        # Confidence: depends on ball source quality at contact + wrist distance
         if mid_src in ("yolo", "white") and wrist_dist < 40:
             conf = "high"
         elif mid_src == "predicted" or wrist_dist < 60:

@@ -1,0 +1,22 @@
+The first chalenge was detection of racket, which couldnot be handled with yolov8n
+So had to switch to yolov8s, then racket detection was proper.
+
+Earlier, the courts and people in the peripheral vision of camera i.e outside of the main focus court
+were visible and skewed the shots count , which was fixed by defining
+a court coordinates , focusing on only certain section that is highlighted by 
+yellow color boundary in video.Rest of it was filtered.
+
+Since ball is quite small and mostly in motion so -
+- Tried this approach by making it a color tracking problem i.e
+tracking the white color in motion as the rest of the court was static.
+But it didnot work as while static it is a solid detectable color but 
+in between the frames because of the motion blur and its small size, it was undetectable.
+
+For shot classification firstly used arm swing methodology,
+but it also classified normal hand moments on walking, moving etc as shots.
+Then tried hybrid approach with the arm-wrist sangle, form the skeleton given by Mediapipe.
+Relaxed threshold as it was getting to conscious regarding false positives that 
+it didnot register some actual shots too.
+
+The accuracy is low, and also i didnot train any additional models , just used the pre trained ones.
+Training one for ball detection in frames would have given much better results.
