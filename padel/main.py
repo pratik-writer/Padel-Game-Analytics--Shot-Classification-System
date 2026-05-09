@@ -9,6 +9,7 @@ from ball import BallTracker, draw_ball
 from contact import ContactDetector
 from shot_classifier_v2 import classify as classify_shot
 from event_merger import EventMerger
+from logger import EventLogger, player_counts
 
 INPUT_PATH  = "data/input.mp4"
 OUTPUT_PATH = "outputs/output.mp4"
@@ -69,6 +70,7 @@ def main():
     ball_tracker = BallTracker()
     contact_det  = ContactDetector()
     merger       = EventMerger()
+    event_logger = EventLogger(out_dir="outputs")
     events_log = []
     last_event_text = ""
     last_event_until = -1.0
@@ -102,6 +104,7 @@ def main():
 
             for ev in new_events:
                 events_log.append(ev)
+                event_logger.add(ev)
                 last_event_text = f"P{ev.player_id}: {ev.shot_type} [{ev.confidence}]"
                 last_event_until = t_sec + 1.5
                 print(f"[SHOT] t={ev.timestamp:6.2f}s  P{ev.player_id}  {ev.shot_type}  conf={ev.confidence}  src={ev.source}")
@@ -119,6 +122,25 @@ def main():
                 cv2.putText(frame, last_event_text, (15, 75),
                             cv2.FONT_HERSHEY_SIMPLEX, 1.1, (0, 255, 255), 3)
 
+            # ---- Per-player counters (top-right) ----
+            counts = player_counts(events_log)
+            y = 35
+            cv2.putText(frame, "Shot counts (FH / BH / SS)",
+                        (width - 380, y), cv2.FONT_HERSHEY_SIMPLEX,
+                        0.6, (255, 255, 255), 2)
+            y += 25
+            for pid in sorted(counts.keys()):
+                c = counts[pid]
+                line = (f"P{pid}: {c.get('Forehand',0)} / "
+                        f"{c.get('Backhand',0)} / {c.get('Serve/Smash',0)}")
+                cv2.putText(frame, line, (width - 380, y),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
+                y += 22
+            total = len(events_log)
+            cv2.putText(frame, f"Total shots: {total}",
+                        (width - 380, y + 6), cv2.FONT_HERSHEY_SIMPLEX,
+                        0.6, (200, 200, 255), 2)
+
             out.write(frame)
             frame_idx += 1
             if frame_idx % 30 == 0:
@@ -130,12 +152,18 @@ def main():
     # Drain any pending merger events that arrived in the last 0.5s
     for ev in merger.flush():
         events_log.append(ev)
+        event_logger.add(ev)
         print(f"[SHOT] t={ev.timestamp:6.2f}s  P{ev.player_id}  {ev.shot_type}  conf={ev.confidence}  src={ev.source}")
-    print(f"[SUMMARY] {len(events_log)} shot events")
-    from collections import Counter
-    print("by type:", Counter(e.shot_type for e in events_log))
-    print("by confidence:", Counter(e.confidence for e in events_log))
+
+    summary = event_logger.export()
+    print(f"[SUMMARY] {summary['total_events']} total events "
+          f"({summary['trusted_events']} trusted)")
+    print(f"  by type:        {summary['by_shot_type']}")
+    print(f"  by confidence:  {summary['by_confidence']}")
+    print(f"  by source:      {summary['by_source']}")
+    print(f"  per player:     {summary['per_player']}")
     print(f"[DONE] wrote {frame_idx} frames -> {OUTPUT_PATH}")
+    print(f"[DONE] events.csv / events.json / summary.json -> outputs/")
 
 if __name__ == "__main__":
     main()
