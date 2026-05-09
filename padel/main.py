@@ -10,6 +10,7 @@ from contact import ContactDetector
 from shot_classifier_v2 import classify as classify_shot
 from event_merger import EventMerger
 from logger import EventLogger, player_counts
+from bounce import BounceDetector
 
 INPUT_PATH  = "data/input.mp4"
 OUTPUT_PATH = "outputs/output.mp4"
@@ -71,6 +72,7 @@ def main():
     contact_det  = ContactDetector()
     merger       = EventMerger()
     event_logger = EventLogger(out_dir="outputs")
+    bounce_det   = BounceDetector(fps=fps)
     events_log = []
     last_event_text = ""
     last_event_until = -1.0
@@ -87,6 +89,10 @@ def main():
             tracks = filter_tracks_in_court(tracks, court_polygon, max_persons=4)
             ball_state = ball_tracker.update(frame, t_sec, tracks, court_polygon)
             poses  = poser.estimate_for_tracks(frame, tracks)
+
+            # Bounce detection (rule-based: ball y-velocity sign change)
+            ball_xy_for_bounce = ball_state.get("xy") if ball_state.get("source") in ("yolo", "white") else None
+            bounce_ev = bounce_det.update(frame_idx, ball_xy_for_bounce)
 
             new_events = []
             contact = contact_det.update(frame_idx, t_sec, ball_state, poses)
@@ -113,6 +119,13 @@ def main():
             draw_poses(frame, poses)
             draw_ball(frame, ball_state)
             draw_court(frame, court_polygon)
+
+            # Show recent bounce as a red ring for ~0.4s
+            for be in bounce_det.events[-5:]:
+                if 0 <= (t_sec - be.timestamp) <= 0.4:
+                    cv2.circle(frame, (int(be.x), int(be.y)), 18, (0, 0, 255), 2)
+                    cv2.putText(frame, "BOUNCE", (int(be.x) + 20, int(be.y)),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
 
             cv2.putText(frame,
                         f"frame={frame_idx} t={t_sec:6.2f}s dets={len(tracks)} poses={len(poses)} ball={ball_state['source']}",
@@ -155,15 +168,24 @@ def main():
         event_logger.add(ev)
         print(f"[SHOT] t={ev.timestamp:6.2f}s  P{ev.player_id}  {ev.shot_type}  conf={ev.confidence}  src={ev.source}")
 
-    summary = event_logger.export()
+    summary = event_logger.export(bounces=bounce_det.events)
     print(f"[SUMMARY] {summary['total_events']} total events "
           f"({summary['trusted_events']} trusted)")
     print(f"  by type:        {summary['by_shot_type']}")
     print(f"  by confidence:  {summary['by_confidence']}")
     print(f"  by source:      {summary['by_source']}")
+    print(f"  by direction:   {summary['by_direction']}")
     print(f"  per player:     {summary['per_player']}")
+    print(f"  bounces:        {summary['total_bounces']}")
     print(f"[DONE] wrote {frame_idx} frames -> {OUTPUT_PATH}")
     print(f"[DONE] events.csv / events.json / summary.json -> outputs/")
+
+    # Render post-run dashboard PNG
+    try:
+        from dashboard import render as render_dashboard
+        render_dashboard("outputs/summary.json", "outputs/dashboard.png")
+    except Exception as e:
+        print(f"[dashboard] skipped: {e}")
 
 if __name__ == "__main__":
     main()
