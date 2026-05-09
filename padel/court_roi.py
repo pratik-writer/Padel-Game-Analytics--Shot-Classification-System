@@ -51,7 +51,20 @@ def calibrate(video_path: str, roi_file: str = ROI_FILE) -> list:
 
 
 def load_or_calibrate(video_path: str, roi_file: str = ROI_FILE) -> np.ndarray:
+    # Headless override: env var PADEL_ROI = "x1,y1;x2,y2;x3,y3;x4,y4"
+    env_roi = os.environ.get("PADEL_ROI")
+    if env_roi:
+        pts = [list(map(int, p.split(","))) for p in env_roi.split(";")]
+        if len(pts) >= 3:
+            print(f"[ROI] loaded from PADEL_ROI env var: {pts}")
+            return np.array(pts, dtype=np.int32)
+
     if not Path(roi_file).exists():
+        if os.environ.get("PADEL_HEADLESS"):
+            raise RuntimeError(
+                f"No ROI file ({roi_file}) and PADEL_HEADLESS set. "
+                "Provide PADEL_ROI=\"x1,y1;x2,y2;x3,y3;x4,y4\" or upload court_roi.json."
+            )
         print("[ROI] no saved polygon, launching calibration window...")
         calibrate(video_path, roi_file)
     with open(roi_file) as f:
