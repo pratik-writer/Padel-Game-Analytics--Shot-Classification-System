@@ -10,7 +10,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 14,
@@ -23,7 +24,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 32,
@@ -36,7 +38,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 35,
@@ -49,7 +52,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 39,
@@ -62,7 +66,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 52,
@@ -75,7 +80,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 78,
@@ -88,7 +94,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 109,
@@ -101,7 +108,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 130,
@@ -114,7 +122,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 145,
@@ -127,7 +136,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 150,
@@ -140,7 +150,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 169,
@@ -153,7 +164,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 189,
@@ -166,7 +178,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 207,
@@ -179,7 +192,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 219,
@@ -192,7 +206,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 234,
@@ -205,7 +220,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 235,
@@ -218,7 +234,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 239,
@@ -231,7 +248,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 261,
@@ -244,7 +262,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 267,
@@ -257,7 +276,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 283,
@@ -270,7 +290,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 286,
@@ -283,7 +304,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 306,
@@ -296,7 +318,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 311,
@@ -309,7 +332,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 336,
@@ -322,7 +346,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 356,
@@ -335,7 +360,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 367,
@@ -348,7 +374,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 371,
@@ -361,7 +388,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 374,
@@ -374,7 +402,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 389,
@@ -387,7 +416,8 @@
     "contact_x": 1176.5,
     "contact_y": 143.5,
     "out_dx": 1.0,
-    "out_dy": 0.0
+    "out_dy": 0.0,
+    "direction": "cross-right"
   },
   {
     "frame": 396,
@@ -400,7 +430,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 411,
@@ -413,7 +444,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 421,
@@ -426,7 +458,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 432,
@@ -439,7 +472,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 441,
@@ -452,7 +486,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 442,
@@ -465,7 +500,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 444,
@@ -478,7 +514,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 460,
@@ -491,7 +528,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 481,
@@ -504,7 +542,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 495,
@@ -517,7 +556,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 515,
@@ -530,7 +570,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 516,
@@ -543,7 +584,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 533,
@@ -556,7 +598,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 534,
@@ -569,7 +612,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 556,
@@ -582,7 +626,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 558,
@@ -595,7 +640,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 578,
@@ -608,7 +654,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 591,
@@ -621,7 +668,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 610,
@@ -634,7 +682,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 615,
@@ -647,7 +696,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 634,
@@ -660,7 +710,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 641,
@@ -673,7 +724,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 645,
@@ -686,7 +738,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 666,
@@ -699,7 +752,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 685,
@@ -712,7 +766,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 688,
@@ -725,7 +780,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 713,
@@ -738,7 +794,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 714,
@@ -751,7 +808,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 733,
@@ -764,7 +822,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 760,
@@ -777,7 +836,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 763,
@@ -790,7 +850,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 778,
@@ -803,7 +864,8 @@
     "contact_x": 1084.0,
     "contact_y": 143.3,
     "out_dx": -0.93,
-    "out_dy": 0.368
+    "out_dy": 0.368,
+    "direction": "cross-left"
   },
   {
     "frame": 783,
@@ -816,7 +878,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 803,
@@ -829,7 +892,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 805,
@@ -842,7 +906,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 825,
@@ -855,7 +920,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 826,
@@ -868,7 +934,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 838,
@@ -881,7 +948,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 846,
@@ -894,7 +962,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 853,
@@ -907,7 +976,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 859,
@@ -920,7 +990,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 862,
@@ -933,7 +1004,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 868,
@@ -946,7 +1018,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 880,
@@ -959,7 +1032,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 883,
@@ -972,7 +1046,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 887,
@@ -985,7 +1060,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 891,
@@ -998,7 +1074,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 889,
@@ -1011,7 +1088,8 @@
     "contact_x": 1196.4,
     "contact_y": 273.1,
     "out_dx": -0.016,
-    "out_dy": -1.0
+    "out_dy": -1.0,
+    "direction": "lob/up-court"
   },
   {
     "frame": 911,
@@ -1024,7 +1102,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 912,
@@ -1037,7 +1116,8 @@
     "contact_x": 1144.6,
     "contact_y": 240.1,
     "out_dx": -0.975,
-    "out_dy": -0.223
+    "out_dy": -0.223,
+    "direction": "cross-left"
   },
   {
     "frame": 916,
@@ -1050,7 +1130,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 918,
@@ -1063,7 +1144,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 919,
@@ -1076,7 +1158,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 925,
@@ -1089,7 +1172,8 @@
     "contact_x": 1137.0,
     "contact_y": 222.5,
     "out_dx": 0.867,
-    "out_dy": -0.499
+    "out_dy": -0.499,
+    "direction": "cross-right"
   },
   {
     "frame": 932,
@@ -1102,7 +1186,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 939,
@@ -1115,7 +1200,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 937,
@@ -1128,7 +1214,8 @@
     "contact_x": 1109.5,
     "contact_y": 211.7,
     "out_dx": -0.254,
-    "out_dy": -0.967
+    "out_dy": -0.967,
+    "direction": "lob/up-court"
   },
   {
     "frame": 943,
@@ -1141,7 +1228,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 947,
@@ -1154,7 +1242,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 950,
@@ -1167,7 +1256,8 @@
     "contact_x": 1087.8,
     "contact_y": 187.8,
     "out_dx": 0.97,
-    "out_dy": 0.241
+    "out_dy": 0.241,
+    "direction": "cross-right"
   },
   {
     "frame": 962,
@@ -1180,7 +1270,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 963,
@@ -1193,7 +1284,8 @@
     "contact_x": 1123.0,
     "contact_y": 204.5,
     "out_dx": -0.717,
-    "out_dy": 0.697
+    "out_dy": 0.697,
+    "direction": "deep-left"
   },
   {
     "frame": 966,
@@ -1206,7 +1298,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 965,
@@ -1219,7 +1312,8 @@
     "contact_x": 1090.5,
     "contact_y": 239.5,
     "out_dx": 1.0,
-    "out_dy": 0.0
+    "out_dy": 0.0,
+    "direction": "cross-right"
   },
   {
     "frame": 979,
@@ -1232,7 +1326,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 986,
@@ -1245,7 +1340,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 991,
@@ -1258,7 +1354,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1006,
@@ -1271,7 +1368,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1016,
@@ -1284,7 +1382,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1021,
@@ -1297,7 +1396,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1024,
@@ -1310,7 +1410,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1039,
@@ -1323,7 +1424,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1040,
@@ -1336,7 +1438,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1049,
@@ -1349,7 +1452,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1061,
@@ -1362,7 +1466,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1073,
@@ -1375,7 +1480,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1085,
@@ -1388,7 +1494,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1096,
@@ -1401,7 +1508,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1106,
@@ -1414,7 +1522,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1114,
@@ -1427,7 +1536,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1119,
@@ -1440,7 +1550,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1121,
@@ -1453,7 +1564,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1124,
@@ -1466,7 +1578,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1144,
@@ -1479,7 +1592,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1145,
@@ -1492,7 +1606,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1176,
@@ -1505,7 +1620,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1180,
@@ -1518,7 +1634,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1186,
@@ -1531,7 +1648,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1204,
@@ -1544,7 +1662,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1229,
@@ -1557,7 +1676,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1251,
@@ -1570,7 +1690,8 @@
     "contact_x": 558.2,
     "contact_y": 692.6,
     "out_dx": 0.96,
-    "out_dy": 0.281
+    "out_dy": 0.281,
+    "direction": "cross-right"
   },
   {
     "frame": 1258,
@@ -1583,7 +1704,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1260,
@@ -1596,7 +1718,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1265,
@@ -1609,7 +1732,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1278,
@@ -1622,7 +1746,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1308,
@@ -1635,7 +1760,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1310,
@@ -1648,7 +1774,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1335,
@@ -1661,7 +1788,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1414,
@@ -1674,7 +1802,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1440,
@@ -1687,7 +1816,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1458,
@@ -1700,7 +1830,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1472,
@@ -1713,7 +1844,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1485,
@@ -1726,7 +1858,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1495,
@@ -1739,7 +1872,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1520,
@@ -1752,7 +1886,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1529,
@@ -1765,7 +1900,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1532,
@@ -1778,7 +1914,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1555,
@@ -1791,7 +1928,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1564,
@@ -1804,7 +1942,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1580,
@@ -1817,7 +1956,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1584,
@@ -1830,7 +1970,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1614,
@@ -1843,7 +1984,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1635,
@@ -1856,7 +1998,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1656,
@@ -1869,7 +2012,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1688,
@@ -1882,7 +2026,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1707,
@@ -1895,7 +2040,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1780,
@@ -1908,7 +2054,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1814,
@@ -1921,7 +2068,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1830,
@@ -1934,7 +2082,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1841,
@@ -1947,7 +2096,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1860,
@@ -1960,7 +2110,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1896,
@@ -1973,7 +2124,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1903,
@@ -1986,7 +2138,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1909,
@@ -1999,7 +2152,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1925,
@@ -2012,7 +2166,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1957,
@@ -2025,7 +2180,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1958,
@@ -2038,7 +2194,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1970,
@@ -2051,7 +2208,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 1994,
@@ -2064,7 +2222,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2001,
@@ -2077,7 +2236,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2022,
@@ -2090,7 +2250,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2038,
@@ -2103,7 +2264,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2042,
@@ -2116,7 +2278,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2063,
@@ -2129,7 +2292,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2085,
@@ -2142,7 +2306,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2086,
@@ -2155,7 +2320,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2109,
@@ -2168,7 +2334,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2122,
@@ -2181,7 +2348,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2132,
@@ -2194,7 +2362,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2165,
@@ -2207,7 +2376,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2173,
@@ -2220,7 +2390,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2179,
@@ -2233,7 +2404,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2197,
@@ -2246,7 +2418,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2209,
@@ -2259,7 +2432,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2212,
@@ -2272,7 +2446,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2215,
@@ -2285,7 +2460,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2245,
@@ -2298,7 +2474,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2265,
@@ -2311,7 +2488,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2276,
@@ -2324,7 +2502,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2284,
@@ -2337,7 +2516,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2316,
@@ -2350,7 +2530,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2339,
@@ -2363,7 +2544,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2348,
@@ -2376,7 +2558,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2358,
@@ -2389,7 +2572,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2376,
@@ -2402,7 +2586,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2396,
@@ -2415,7 +2600,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2397,
@@ -2428,7 +2614,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2417,
@@ -2441,7 +2628,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2438,
@@ -2454,7 +2642,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2448,
@@ -2467,7 +2656,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2483,
@@ -2480,7 +2670,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2486,
@@ -2493,7 +2684,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2500,
@@ -2506,7 +2698,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2560,
@@ -2519,7 +2712,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2589,
@@ -2532,7 +2726,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2611,
@@ -2545,7 +2740,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2619,
@@ -2558,7 +2754,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2624,
@@ -2571,7 +2768,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2631,
@@ -2584,7 +2782,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2642,
@@ -2597,7 +2796,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2655,
@@ -2610,7 +2810,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2661,
@@ -2623,7 +2824,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2662,
@@ -2636,7 +2838,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2700,
@@ -2649,7 +2852,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2705,
@@ -2662,7 +2866,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2720,
@@ -2675,7 +2880,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2724,
@@ -2688,7 +2894,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2725,
@@ -2701,7 +2908,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2744,
@@ -2714,7 +2922,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2754,
@@ -2727,7 +2936,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2762,
@@ -2740,7 +2950,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2789,
@@ -2753,7 +2964,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2808,
@@ -2766,7 +2978,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2850,
@@ -2779,7 +2992,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2871,
@@ -2792,7 +3006,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2882,
@@ -2805,7 +3020,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2896,
@@ -2818,7 +3034,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2901,
@@ -2831,7 +3048,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2915,
@@ -2844,7 +3062,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2950,
@@ -2857,7 +3076,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2951,
@@ -2870,7 +3090,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2967,
@@ -2883,7 +3104,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 2988,
@@ -2896,7 +3118,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3004,
@@ -2909,7 +3132,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3006,
@@ -2922,7 +3146,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3024,
@@ -2935,7 +3160,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3029,
@@ -2948,7 +3174,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3074,
@@ -2961,7 +3188,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3077,
@@ -2974,7 +3202,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3097,
@@ -2987,7 +3216,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3120,
@@ -3000,7 +3230,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3122,
@@ -3013,7 +3244,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3151,
@@ -3026,7 +3258,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3168,
@@ -3039,7 +3272,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3192,
@@ -3052,7 +3286,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3212,
@@ -3065,7 +3300,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3239,
@@ -3078,7 +3314,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3240,
@@ -3091,7 +3328,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3258,
@@ -3104,7 +3342,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3262,
@@ -3117,7 +3356,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3282,
@@ -3130,7 +3370,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3295,
@@ -3143,7 +3384,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3329,
@@ -3156,7 +3398,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3357,
@@ -3169,7 +3412,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3415,
@@ -3182,7 +3426,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3442,
@@ -3195,7 +3440,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3452,
@@ -3208,7 +3454,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3468,
@@ -3221,7 +3468,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3476,
@@ -3234,7 +3482,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3497,
@@ -3247,7 +3496,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3503,
@@ -3260,7 +3510,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3504,
@@ -3273,7 +3524,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3523,
@@ -3286,7 +3538,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3541,
@@ -3299,7 +3552,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3544,
@@ -3312,7 +3566,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3566,
@@ -3325,7 +3580,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3578,
@@ -3338,7 +3594,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3588,
@@ -3351,7 +3608,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3608,
@@ -3364,7 +3622,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3613,
@@ -3377,7 +3636,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3622,
@@ -3390,7 +3650,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3636,
@@ -3403,7 +3664,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3646,
@@ -3416,7 +3678,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3658,
@@ -3429,7 +3692,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3667,
@@ -3442,7 +3706,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3673,
@@ -3455,7 +3720,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3677,
@@ -3468,7 +3734,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3684,
@@ -3481,7 +3748,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3700,
@@ -3494,7 +3762,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3704,
@@ -3507,7 +3776,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3718,
@@ -3520,7 +3790,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3719,
@@ -3533,7 +3804,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3721,
@@ -3546,7 +3818,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3722,
@@ -3559,7 +3832,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3740,
@@ -3572,7 +3846,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3741,
@@ -3585,7 +3860,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3753,
@@ -3598,7 +3874,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3771,
@@ -3611,7 +3888,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3779,
@@ -3624,7 +3902,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3782,
@@ -3637,7 +3916,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3795,
@@ -3650,7 +3930,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3808,
@@ -3663,7 +3944,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3816,
@@ -3676,7 +3958,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3818,
@@ -3689,7 +3972,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3826,
@@ -3702,7 +3986,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3845,
@@ -3715,7 +4000,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3863,
@@ -3728,7 +4014,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3865,
@@ -3741,7 +4028,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3873,
@@ -3754,7 +4042,8 @@
     "contact_x": 1036.0,
     "contact_y": 305.4,
     "out_dx": -0.239,
-    "out_dy": -0.971
+    "out_dy": -0.971,
+    "direction": "lob/up-court"
   },
   {
     "frame": 3902,
@@ -3767,7 +4056,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3903,
@@ -3780,7 +4070,8 @@
     "contact_x": 1021.0,
     "contact_y": 327.0,
     "out_dx": -1.0,
-    "out_dy": 0.023
+    "out_dy": 0.023,
+    "direction": "cross-left"
   },
   {
     "frame": 3906,
@@ -3793,7 +4084,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3907,
@@ -3806,7 +4098,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3908,
@@ -3819,7 +4112,8 @@
     "contact_x": 948.5,
     "contact_y": 268.0,
     "out_dx": 0.954,
-    "out_dy": 0.3
+    "out_dy": 0.3,
+    "direction": "cross-right"
   },
   {
     "frame": 3934,
@@ -3832,7 +4126,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3936,
@@ -3845,7 +4140,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3945,
@@ -3858,7 +4154,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3957,
@@ -3871,7 +4168,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3979,
@@ -3884,7 +4182,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 3985,
@@ -3897,7 +4196,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4031,
@@ -3910,7 +4210,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4042,
@@ -3923,7 +4224,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4072,
@@ -3936,7 +4238,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4085,
@@ -3949,7 +4252,8 @@
     "contact_x": 685.7,
     "contact_y": 186.1,
     "out_dx": 0.944,
-    "out_dy": -0.331
+    "out_dy": -0.331,
+    "direction": "cross-right"
   },
   {
     "frame": 4092,
@@ -3962,7 +4266,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4099,
@@ -3975,7 +4280,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4136,
@@ -3988,7 +4294,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4147,
@@ -4001,7 +4308,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4163,
@@ -4014,7 +4322,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4162,
@@ -4027,7 +4336,8 @@
     "contact_x": 676.5,
     "contact_y": 156.5,
     "out_dx": 0.737,
-    "out_dy": 0.676
+    "out_dy": 0.676,
+    "direction": "deep-right"
   },
   {
     "frame": 4165,
@@ -4040,7 +4350,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4171,
@@ -4053,7 +4364,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4175,
@@ -4066,7 +4378,8 @@
     "contact_x": 676.9,
     "contact_y": 146.0,
     "out_dx": -0.06,
-    "out_dy": 0.998
+    "out_dy": 0.998,
+    "direction": "down-the-line"
   },
   {
     "frame": 4189,
@@ -4079,7 +4392,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4193,
@@ -4092,7 +4406,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4191,
@@ -4105,7 +4420,8 @@
     "contact_x": 683.6,
     "contact_y": 136.1,
     "out_dx": -0.089,
-    "out_dy": 0.996
+    "out_dy": 0.996,
+    "direction": "down-the-line"
   },
   {
     "frame": 4199,
@@ -4118,7 +4434,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4204,
@@ -4131,7 +4448,8 @@
     "contact_x": 682.4,
     "contact_y": 123.1,
     "out_dx": 0.003,
-    "out_dy": 1.0
+    "out_dy": 1.0,
+    "direction": "down-the-line"
   },
   {
     "frame": 4218,
@@ -4144,7 +4462,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4223,
@@ -4157,7 +4476,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4223,
@@ -4170,7 +4490,8 @@
     "contact_x": 682.5,
     "contact_y": 150.5,
     "out_dx": 0.342,
-    "out_dy": -0.94
+    "out_dy": -0.94,
+    "direction": "lob/up-court"
   },
   {
     "frame": 4242,
@@ -4183,7 +4504,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4250,
@@ -4196,7 +4518,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4265,
@@ -4209,7 +4532,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4268,
@@ -4222,7 +4546,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4289,
@@ -4235,7 +4560,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4299,
@@ -4248,7 +4574,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4313,
@@ -4261,7 +4588,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4317,
@@ -4274,7 +4602,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4342,
@@ -4287,7 +4616,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4347,
@@ -4300,7 +4630,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4367,
@@ -4313,7 +4644,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4375,
@@ -4326,7 +4658,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4441,
@@ -4339,7 +4672,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4454,
@@ -4352,7 +4686,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4460,
@@ -4365,7 +4700,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4508,
@@ -4378,7 +4714,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4511,
@@ -4391,7 +4728,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4546,
@@ -4404,7 +4742,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4549,
@@ -4417,7 +4756,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4576,
@@ -4430,7 +4770,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4578,
@@ -4443,7 +4784,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4602,
@@ -4456,7 +4798,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4609,
@@ -4469,7 +4812,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4629,
@@ -4482,7 +4826,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4644,
@@ -4495,7 +4840,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4673,
@@ -4508,7 +4854,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4678,
@@ -4521,7 +4868,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4686,
@@ -4534,7 +4882,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4699,
@@ -4547,7 +4896,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4720,
@@ -4560,7 +4910,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4744,
@@ -4573,7 +4924,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4750,
@@ -4586,7 +4938,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4754,
@@ -4599,7 +4952,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4762,
@@ -4612,7 +4966,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4774,
@@ -4625,7 +4980,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4783,
@@ -4638,7 +4994,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4797,
@@ -4651,7 +5008,8 @@
     "contact_x": 781.5,
     "contact_y": 172.2,
     "out_dx": 0.831,
-    "out_dy": -0.556
+    "out_dy": -0.556,
+    "direction": "up-right"
   },
   {
     "frame": 4803,
@@ -4664,7 +5022,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4834,
@@ -4677,7 +5036,8 @@
     "contact_x": 814.4,
     "contact_y": 134.0,
     "out_dx": -0.107,
-    "out_dy": 0.994
+    "out_dy": 0.994,
+    "direction": "down-the-line"
   },
   {
     "frame": 4852,
@@ -4690,7 +5050,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4860,
@@ -4703,7 +5064,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4863,
@@ -4716,7 +5078,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4870,
@@ -4729,7 +5092,8 @@
     "contact_x": 815.5,
     "contact_y": 135.5,
     "out_dx": 0.11,
-    "out_dy": 0.994
+    "out_dy": 0.994,
+    "direction": "down-the-line"
   },
   {
     "frame": 4875,
@@ -4742,7 +5106,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4879,
@@ -4755,7 +5120,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4887,
@@ -4768,7 +5134,8 @@
     "contact_x": 787.5,
     "contact_y": 173.0,
     "out_dx": -0.381,
-    "out_dy": -0.925
+    "out_dy": -0.925,
+    "direction": "lob/up-court"
   },
   {
     "frame": 4901,
@@ -4781,7 +5148,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4934,
@@ -4794,7 +5162,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4960,
@@ -4807,7 +5176,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4961,
@@ -4820,7 +5190,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4983,
@@ -4833,7 +5204,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 4986,
@@ -4846,7 +5218,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5003,
@@ -4859,7 +5232,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5006,
@@ -4872,7 +5246,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5008,
@@ -4885,7 +5260,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5039,
@@ -4898,7 +5274,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5048,
@@ -4911,7 +5288,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5060,
@@ -4924,7 +5302,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5072,
@@ -4937,7 +5316,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5084,
@@ -4950,7 +5330,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5090,
@@ -4963,7 +5344,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5102,
@@ -4976,7 +5358,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5117,
@@ -4989,7 +5372,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5121,
@@ -5002,7 +5386,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5137,
@@ -5015,7 +5400,8 @@
     "contact_x": 873.7,
     "contact_y": 108.7,
     "out_dx": 0.96,
-    "out_dy": 0.28
+    "out_dy": 0.28,
+    "direction": "cross-right"
   },
   {
     "frame": 5144,
@@ -5028,7 +5414,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5158,
@@ -5041,7 +5428,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5164,
@@ -5054,7 +5442,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5188,
@@ -5067,7 +5456,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5197,
@@ -5080,7 +5470,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5212,
@@ -5093,7 +5484,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5259,
@@ -5106,7 +5498,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5281,
@@ -5119,7 +5512,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5298,
@@ -5132,7 +5526,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5305,
@@ -5145,7 +5540,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5311,
@@ -5158,7 +5554,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5326,
@@ -5171,7 +5568,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5355,
@@ -5184,7 +5582,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5364,
@@ -5197,7 +5596,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5382,
@@ -5210,7 +5610,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5393,
@@ -5223,7 +5624,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5400,
@@ -5236,7 +5638,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5411,
@@ -5249,7 +5652,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5414,
@@ -5262,7 +5666,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5418,
@@ -5275,7 +5680,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5429,
@@ -5288,7 +5694,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5434,
@@ -5301,7 +5708,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5436,
@@ -5314,7 +5722,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5451,
@@ -5327,7 +5736,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5457,
@@ -5340,7 +5750,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5460,
@@ -5353,7 +5764,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5471,
@@ -5366,7 +5778,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5490,
@@ -5379,7 +5792,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5495,
@@ -5392,7 +5806,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5509,
@@ -5405,7 +5820,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5513,
@@ -5418,7 +5834,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5526,
@@ -5431,7 +5848,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5527,
@@ -5444,7 +5862,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5533,
@@ -5457,7 +5876,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5545,
@@ -5470,7 +5890,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5548,
@@ -5483,7 +5904,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5561,
@@ -5496,7 +5918,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5577,
@@ -5509,7 +5932,8 @@
     "contact_x": 891.7,
     "contact_y": 334.2,
     "out_dx": 0.877,
-    "out_dy": 0.48
+    "out_dy": 0.48,
+    "direction": "cross-right"
   },
   {
     "frame": 5583,
@@ -5522,7 +5946,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5592,
@@ -5535,7 +5960,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5606,
@@ -5548,7 +5974,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5606,
@@ -5561,7 +5988,8 @@
     "contact_x": 893.1,
     "contact_y": 320.9,
     "out_dx": -0.73,
-    "out_dy": 0.683
+    "out_dy": 0.683,
+    "direction": "deep-left"
   },
   {
     "frame": 5614,
@@ -5574,7 +6002,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5633,
@@ -5587,7 +6016,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5636,
@@ -5600,7 +6030,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5641,
@@ -5613,7 +6044,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5661,
@@ -5626,7 +6058,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5662,
@@ -5639,7 +6072,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5682,
@@ -5652,7 +6086,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5689,
@@ -5665,7 +6100,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5706,
@@ -5678,7 +6114,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5711,
@@ -5691,7 +6128,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5718,
@@ -5704,7 +6142,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5720,
@@ -5717,7 +6156,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5735,
@@ -5730,7 +6170,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5737,
@@ -5743,7 +6184,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5760,
@@ -5756,7 +6198,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5763,
@@ -5769,7 +6212,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5777,
@@ -5782,7 +6226,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5783,
@@ -5795,7 +6240,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5784,
@@ -5808,7 +6254,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5794,
@@ -5821,7 +6268,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5801,
@@ -5834,7 +6282,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5804,
@@ -5847,7 +6296,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5807,
@@ -5860,7 +6310,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5806,
@@ -5873,7 +6324,8 @@
     "contact_x": 1072.9,
     "contact_y": 388.6,
     "out_dx": -0.049,
-    "out_dy": 0.999
+    "out_dy": 0.999,
+    "direction": "down-the-line"
   },
   {
     "frame": 5821,
@@ -5886,7 +6338,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5825,
@@ -5899,7 +6352,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5834,
@@ -5912,7 +6366,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5838,
@@ -5925,7 +6380,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5847,
@@ -5938,7 +6394,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5849,
@@ -5951,7 +6408,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5858,
@@ -5964,7 +6422,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5867,
@@ -5977,7 +6436,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5874,
@@ -5990,7 +6450,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5880,
@@ -6003,7 +6464,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5884,
@@ -6016,7 +6478,8 @@
     "contact_x": 998.0,
     "contact_y": 666.9,
     "out_dx": -0.961,
-    "out_dy": 0.278
+    "out_dy": 0.278,
+    "direction": "cross-left"
   },
   {
     "frame": 5887,
@@ -6029,7 +6492,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5894,
@@ -6042,7 +6506,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5901,
@@ -6055,7 +6520,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5907,
@@ -6068,7 +6534,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5914,
@@ -6081,7 +6548,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5920,
@@ -6094,7 +6562,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5938,
@@ -6107,7 +6576,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5942,
@@ -6120,7 +6590,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5950,
@@ -6133,7 +6604,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5969,
@@ -6146,7 +6618,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 5994,
@@ -6159,7 +6632,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6009,
@@ -6172,7 +6646,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6105,
@@ -6185,7 +6660,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6125,
@@ -6198,7 +6674,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6138,
@@ -6211,7 +6688,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6145,
@@ -6224,7 +6702,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6152,
@@ -6237,7 +6716,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6156,
@@ -6250,7 +6730,8 @@
     "contact_x": 774.7,
     "contact_y": 176.0,
     "out_dx": 0.103,
-    "out_dy": -0.995
+    "out_dy": -0.995,
+    "direction": "lob/up-court"
   },
   {
     "frame": 6171,
@@ -6263,7 +6744,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6173,
@@ -6276,7 +6758,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6193,
@@ -6289,7 +6772,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6204,
@@ -6302,7 +6786,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6212,
@@ -6315,7 +6800,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6222,
@@ -6328,7 +6814,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6233,
@@ -6341,7 +6828,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6240,
@@ -6354,7 +6842,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6250,
@@ -6367,7 +6856,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6257,
@@ -6380,7 +6870,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6273,
@@ -6393,7 +6884,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6279,
@@ -6406,7 +6898,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6293,
@@ -6419,7 +6912,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6299,
@@ -6432,7 +6926,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6300,
@@ -6445,7 +6940,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6317,
@@ -6458,7 +6954,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6321,
@@ -6471,7 +6968,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6346,
@@ -6484,7 +6982,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6349,
@@ -6497,7 +6996,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6354,
@@ -6510,7 +7010,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6369,
@@ -6523,7 +7024,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6368,
@@ -6536,7 +7038,8 @@
     "contact_x": 809.0,
     "contact_y": 137.5,
     "out_dx": 1.0,
-    "out_dy": -0.022
+    "out_dy": -0.022,
+    "direction": "cross-right"
   },
   {
     "frame": 6390,
@@ -6549,7 +7052,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6402,
@@ -6562,7 +7066,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6430,
@@ -6575,7 +7080,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6436,
@@ -6588,7 +7094,8 @@
     "contact_x": 758.5,
     "contact_y": 128.5,
     "out_dx": 0.654,
-    "out_dy": 0.757
+    "out_dy": 0.757,
+    "direction": "deep-right"
   },
   {
     "frame": 6446,
@@ -6601,7 +7108,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6448,
@@ -6614,7 +7122,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6466,
@@ -6627,7 +7136,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6468,
@@ -6640,7 +7150,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6493,
@@ -6653,7 +7164,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6501,
@@ -6666,7 +7178,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6510,
@@ -6679,7 +7192,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6513,
@@ -6692,7 +7206,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6528,
@@ -6705,7 +7220,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6531,
@@ -6718,7 +7234,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6534,
@@ -6731,7 +7248,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6551,
@@ -6744,7 +7262,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6564,
@@ -6757,7 +7276,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6566,
@@ -6770,7 +7290,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6576,
@@ -6783,7 +7304,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6587,
@@ -6796,7 +7318,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6603,
@@ -6809,7 +7332,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6605,
@@ -6822,7 +7346,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6604,
@@ -6835,7 +7360,8 @@
     "contact_x": 873.0,
     "contact_y": 782.0,
     "out_dx": -0.961,
-    "out_dy": -0.277
+    "out_dy": -0.277,
+    "direction": "cross-left"
   },
   {
     "frame": 6610,
@@ -6848,7 +7374,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6614,
@@ -6861,7 +7388,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6620,
@@ -6874,7 +7402,8 @@
     "contact_x": 873.8,
     "contact_y": 777.2,
     "out_dx": -0.995,
-    "out_dy": 0.104
+    "out_dy": 0.104,
+    "direction": "cross-left"
   },
   {
     "frame": 6623,
@@ -6887,7 +7416,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6629,
@@ -6900,7 +7430,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6651,
@@ -6913,7 +7444,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6652,
@@ -6926,7 +7458,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6670,
@@ -6939,7 +7472,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6688,
@@ -6952,7 +7486,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6697,
@@ -6965,7 +7500,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6703,
@@ -6978,7 +7514,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6723,
@@ -6991,7 +7528,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6727,
@@ -7004,7 +7542,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6747,
@@ -7017,7 +7556,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6751,
@@ -7030,7 +7570,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6771,
@@ -7043,7 +7584,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6780,
@@ -7056,7 +7598,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6790,
@@ -7069,7 +7612,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6809,
@@ -7082,7 +7626,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6819,
@@ -7095,7 +7640,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6831,
@@ -7108,7 +7654,8 @@
     "contact_x": 964.5,
     "contact_y": 718.5,
     "out_dx": -0.733,
-    "out_dy": 0.68
+    "out_dy": 0.68,
+    "direction": "deep-left"
   },
   {
     "frame": 6842,
@@ -7121,7 +7668,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6857,
@@ -7134,7 +7682,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6889,
@@ -7147,7 +7696,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6894,
@@ -7160,7 +7710,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6897,
@@ -7173,7 +7724,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6913,
@@ -7186,7 +7738,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6911,
@@ -7199,7 +7752,8 @@
     "contact_x": 1137.3,
     "contact_y": 555.7,
     "out_dx": 1.0,
-    "out_dy": -0.017
+    "out_dy": -0.017,
+    "direction": "cross-right"
   },
   {
     "frame": 6919,
@@ -7212,7 +7766,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6921,
@@ -7225,7 +7780,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6924,
@@ -7238,7 +7794,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6940,
@@ -7251,7 +7808,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6943,
@@ -7264,7 +7822,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6960,
@@ -7277,7 +7836,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6965,
@@ -7290,7 +7850,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6966,
@@ -7303,7 +7864,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 6988,
@@ -7316,7 +7878,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7007,
@@ -7329,7 +7892,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7014,
@@ -7342,7 +7906,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7028,
@@ -7355,7 +7920,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7033,
@@ -7368,7 +7934,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7048,
@@ -7381,7 +7948,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7059,
@@ -7394,7 +7962,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7071,
@@ -7407,7 +7976,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7092,
@@ -7420,7 +7990,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7112,
@@ -7433,7 +8004,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7139,
@@ -7446,7 +8018,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7157,
@@ -7459,7 +8032,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7169,
@@ -7472,7 +8046,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7175,
@@ -7485,7 +8060,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7217,
@@ -7498,7 +8074,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7219,
@@ -7511,7 +8088,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7243,
@@ -7524,7 +8102,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7249,
@@ -7537,7 +8116,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7263,
@@ -7550,7 +8130,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7273,
@@ -7563,7 +8144,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7292,
@@ -7576,7 +8158,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7307,
@@ -7589,7 +8172,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7312,
@@ -7602,7 +8186,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7327,
@@ -7615,7 +8200,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7334,
@@ -7628,7 +8214,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7336,
@@ -7641,7 +8228,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7354,
@@ -7654,7 +8242,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7355,
@@ -7667,7 +8256,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7356,
@@ -7680,7 +8270,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7375,
@@ -7693,7 +8284,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7378,
@@ -7706,7 +8298,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7394,
@@ -7719,7 +8312,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7400,
@@ -7732,7 +8326,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7407,
@@ -7745,7 +8340,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7428,
@@ -7758,7 +8354,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7441,
@@ -7771,7 +8368,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7449,
@@ -7784,7 +8382,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7453,
@@ -7797,7 +8396,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7471,
@@ -7810,7 +8410,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7473,
@@ -7823,7 +8424,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7498,
@@ -7836,7 +8438,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7500,
@@ -7849,7 +8452,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7503,
@@ -7862,7 +8466,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7522,
@@ -7875,7 +8480,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7527,
@@ -7888,7 +8494,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7542,
@@ -7901,7 +8508,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7566,
@@ -7914,7 +8522,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7581,
@@ -7927,7 +8536,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7593,
@@ -7940,7 +8550,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7599,
@@ -7953,7 +8564,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7626,
@@ -7966,7 +8578,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7629,
@@ -7979,7 +8592,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7634,
@@ -7992,7 +8606,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7648,
@@ -8005,7 +8620,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7666,
@@ -8018,7 +8634,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7684,
@@ -8031,7 +8648,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7715,
@@ -8044,7 +8662,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7739,
@@ -8057,7 +8676,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7770,
@@ -8070,7 +8690,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7779,
@@ -8083,7 +8704,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7788,
@@ -8096,7 +8718,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7827,
@@ -8109,7 +8732,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7838,
@@ -8122,7 +8746,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7856,
@@ -8135,7 +8760,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7873,
@@ -8148,7 +8774,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7887,
@@ -8161,7 +8788,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7930,
@@ -8174,7 +8802,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 7998,
@@ -8187,7 +8816,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8005,
@@ -8200,7 +8830,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8018,
@@ -8213,7 +8844,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8021,
@@ -8226,7 +8858,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8022,
@@ -8239,7 +8872,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8036,
@@ -8252,7 +8886,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8039,
@@ -8265,7 +8900,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8066,
@@ -8278,7 +8914,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8081,
@@ -8291,7 +8928,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8088,
@@ -8304,7 +8942,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8089,
@@ -8317,7 +8956,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8105,
@@ -8330,7 +8970,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8108,
@@ -8343,7 +8984,8 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   },
   {
     "frame": 8116,
@@ -8356,6 +8998,7 @@
     "contact_x": null,
     "contact_y": null,
     "out_dx": null,
-    "out_dy": null
+    "out_dy": null,
+    "direction": "unknown"
   }
 ]
