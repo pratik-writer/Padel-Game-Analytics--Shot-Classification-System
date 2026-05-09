@@ -1,0 +1,161 @@
+{
+  "total_events": 643,
+  "trusted_events": 479,
+  "by_shot_type": {
+    "Serve/Smash": 51,
+    "Backhand": 330,
+    "Forehand": 262
+  },
+  "by_confidence": {
+    "med": 479,
+    "low": 164
+  },
+  "by_source": {
+    "pose": 608,
+    "contact": 35
+  },
+  "trusted_by_shot_type": {
+    "Serve/Smash": 37,
+    "Backhand": 253,
+    "Forehand": 189
+  },
+  "per_player": {
+    "7": {
+      "Serve/Smash": 1,
+      "Forehand": 1,
+      "Backhand": 3
+    },
+    "3": {
+      "Backhand": 13,
+      "Forehand": 4,
+      "Serve/Smash": 2
+    },
+    "1": {
+      "Forehand": 19,
+      "Backhand": 5
+    },
+    "5": {
+      "Forehand": 7,
+      "Serve/Smash": 2
+    },
+    "158": {
+      "Backhand": 24,
+      "Forehand": 1,
+      "Serve/Smash": 1
+    },
+    "507": {
+      "Forehand": 3,
+      "Serve/Smash": 5,
+      "Backhand": 12
+    },
+    "519": {
+      "Backhand": 7,
+      "Forehand": 6
+    },
+    "795": {
+      "Backhand": 51,
+      "Forehand": 12,
+      "Serve/Smash": 8
+    },
+    "981": {
+      "Forehand": 8
+    },
+    "1118": {
+      "Serve/Smash": 7,
+      "Backhand": 51,
+      "Forehand": 16
+    },
+    "1274": {
+      "Serve/Smash": 1
+    },
+    "1325": {
+      "Serve/Smash": 1
+    },
+    "1362": {
+      "Forehand": 3,
+      "Serve/Smash": 1
+    },
+    "1512": {
+      "Forehand": 3
+    },
+    "1645": {
+      "Forehand": 20
+    },
+    "1947": {
+      "Forehand": 1
+    },
+    "1994": {
+      "Backhand": 8,
+      "Forehand": 15,
+      "Serve/Smash": 1
+    },
+    "2303": {
+      "Forehand": 7,
+      "Serve/Smash": 1
+    },
+    "2877": {
+      "Forehand": 8
+    },
+    "3095": {
+      "Backhand": 1,
+      "Forehand": 3
+    },
+    "3136": {
+      "Backhand": 31,
+      "Forehand": 3,
+      "Serve/Smash": 6
+    },
+    "3231": {
+      "Backhand": 68,
+      "Forehand": 21,
+      "Serve/Smash": 3
+    },
+    "3259": {
+      "Backhand": 1
+    },
+    "3300": {
+      "Forehand": 1
+    },
+    "3402": {
+      "Forehand": 5,
+      "Backhand": 1
+    },
+    "3500": {
+      "Forehand": 2
+    },
+    "3620": {
+      "Forehand": 43,
+      "Backhand": 9,
+      "Serve/Smash": 1
+    },
+    "3809": {
+      "Forehand": 1
+    },
+    "4007": {
+      "Forehand": 22,
+      "Serve/Smash": 1,
+      "Backhand": 7
+    },
+    "4688": {
+      "Backhand": 5,
+      "Forehand": 2,
+      "Serve/Smash": 2
+    },
+    "5028": {
+      "Backhand": 7,
+      "Serve/Smash": 1
+    },
+    "5364": {
+      "Serve/Smash": 6,
+      "Backhand": 24,
+      "Forehand": 2
+    },
+    "6024": {
+      "Forehand": 1
+    },
+    "6012": {
+      "Forehand": 22,
+      "Backhand": 2
+    }
+  }
+}
