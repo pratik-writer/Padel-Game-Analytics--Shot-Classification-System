@@ -14,6 +14,16 @@
     "pose": 608,
     "contact": 35
   },
+  "by_direction": {
+    "unknown": 608,
+    "cross-right": 11,
+    "cross-left": 6,
+    "lob/up-court": 6,
+    "deep-left": 3,
+    "deep-right": 2,
+    "down-the-line": 6,
+    "up-right": 1
+  },
   "trusted_by_shot_type": {
     "Serve/Smash": 37,
     "Backhand": 253,
@@ -157,5 +167,6 @@
       "Forehand": 22,
       "Backhand": 2
     }
-  }
+  },
+  "total_bounces": 28
 }
