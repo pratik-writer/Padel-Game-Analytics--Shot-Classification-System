@@ -15,7 +15,30 @@ CSV_FIELDS = [
     "shot_type", "side", "confidence", "source",
     "contact_x", "contact_y",
     "out_dx", "out_dy",
+    "direction",
 ]
+
+
+def _direction_label(out_dx, out_dy) -> str:
+    """Turn raw post-contact velocity into a coarse human-readable label.
+    Image coords: +x = right, +y = down (away from camera baseline if the
+    near court is at the bottom of the frame).
+    """
+    if out_dx is None or out_dy is None:
+        return "unknown"
+    import math
+    speed = math.hypot(out_dx, out_dy)
+    if speed < 1e-3:
+        return "unknown"
+    # Depth (y) component vs lateral (x) component
+    if abs(out_dy) > abs(out_dx) * 1.5:
+        return "down-the-line" if out_dy > 0 else "lob/up-court"
+    if abs(out_dx) > abs(out_dy) * 1.5:
+        return "cross-left" if out_dx < 0 else "cross-right"
+    # Mixed direction
+    depth   = "deep"  if out_dy > 0 else "up"
+    lateral = "left"  if out_dx < 0 else "right"
+    return f"{depth}-{lateral}"
 
 class EventLogger:
     def __init__(self, out_dir: str = "outputs"):
@@ -29,7 +52,8 @@ class EventLogger:
     def export(self,
                csv_path: str = "events.csv",
                json_path: str = "events.json",
-               summary_path: str = "summary.json") -> dict:
+               summary_path: str = "summary.json",
+               bounces: list = None) -> dict:
         rows = [self._to_row(ev) for ev in self.events]
 
         # CSV
@@ -44,7 +68,7 @@ class EventLogger:
             json.dump(rows, f, indent=2)
 
         # Analytics summary
-        summary = self._build_summary()
+        summary = self._build_summary(rows, bounces or [])
         with (self.out_dir / summary_path).open("w", encoding="utf-8") as f:
             json.dump(summary, f, indent=2)
 
@@ -67,12 +91,17 @@ class EventLogger:
             "contact_y":  None if cxy[1] is None else round(cxy[1], 1),
             "out_dx":     None if odir[0] is None else round(odir[0], 3),
             "out_dy":     None if odir[1] is None else round(odir[1], 3),
+            "direction":  _direction_label(odir[0], odir[1]),
         }
 
-    def _build_summary(self) -> dict:
+    def _build_summary(self, rows=None, bounces=None) -> dict:
+        rows = rows if rows is not None else [self._to_row(e) for e in self.events]
+        bounces = bounces or []
+
         by_type    = Counter(e.shot_type  for e in self.events)
         by_conf    = Counter(e.confidence for e in self.events)
         by_source  = Counter(e.source     for e in self.events)
+        by_direction = Counter(r["direction"] for r in rows)
         per_player = defaultdict(lambda: Counter())
         for e in self.events:
             per_player[e.player_id][e.shot_type] += 1
@@ -87,10 +116,12 @@ class EventLogger:
             "by_shot_type":          dict(by_type),
             "by_confidence":         dict(by_conf),
             "by_source":             dict(by_source),
+            "by_direction":          dict(by_direction),
             "trusted_by_shot_type":  dict(trusted_by_type),
             "per_player": {
                 str(pid): dict(c) for pid, c in per_player.items()
             },
+            "total_bounces":         len(bounces),
         }
 
 
