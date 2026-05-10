@@ -108,13 +108,12 @@ padel/
   dashboard.py             # post run matplotlib summary PNG
   requirements.txt
   challenges.txt
-  models/                  # TrackNet weights live here (43 MB, not committed, downloaded once)
   data/                    # input.mp4 goes here at runtime (not committed, file is large)
   outputs/                 # generated at runtime (not committed): output.mp4, events.csv,
                            # events.json, summary.json, dashboard.png
 ```
 
-The `data/`, `outputs/` and `models/` folders are referenced by the code but their contents are not in the repo. Drive links to the input and output videos are at the bottom of this README.
+The `data/` and `outputs/` folders are referenced by the code but their contents are not in the repo. The TrackNet weights file is also not in the repo because of size (43 MB); it gets downloaded into a fresh `models/` folder during setup. Drive links to the input and output videos are at the bottom of this README.
 
 ## Setup
 
@@ -125,7 +124,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-The TrackNet weights file is not in the repo (43 MB). Download it once before running:
+The TrackNet weights file is not in the repo (43 MB). The command below creates a `models/` folder and downloads the weights into it. Run it once before the first run:
 
 ```bash
 pip install gdown
@@ -203,14 +202,11 @@ Every detected shot becomes one row in `outputs/events.csv`:
 
 ## Limitations
 
-1. Ball recall on fast shots is good but not perfect. TrackNet helps a lot, but a tennis trained model still misses some padel specific cases.
-2. Player bounding box masking can hide the ball at contact. A ball overlapping a wrist sits inside the bounding box at the exact moment we want to detect it. I shrink the box by 4 pixels as a compromise.
-3. Pose only events still over fire. They are tagged `med` or `low`. For clean analytics, filter to `confidence == "high"`.
-4. Right handedness assumption. Side labels invert for left handed players.
-5. 2D bounce detection. A wall bounce and a floor bounce both look like a y velocity flip and can't be told apart without depth.
-6. One court only. The ROI is fixed; multi court analysis would need one ROI per court.
-7. Player IDs can swap on occlusion. Stable per run, not globally identifiable.
-8. CPU is slow. End to end at ~0.3 fps with TrackNet. A GPU brings it to a comfortable speed.
+1. Pose only events still over fire. They are tagged `med` or `low`. For clean analytics, filter to `confidence == "high"`.
+2. Right handedness assumption. Side labels invert for left handed players.
+3. 2D bounce detection. A wall bounce and a floor bounce both look like a y velocity flip and can't be told apart without depth.
+4. Player IDs can swap on occlusion. Stable per run, not globally identifiable.
+5. CPU is slow. End to end at ~0.3 fps with TrackNet. A GPU brings it to a comfortable speed.
 
 ## What I would build next
 
@@ -235,7 +231,7 @@ To reproduce locally, drop `input.mp4` into `padel/data/`, download the TrackNet
 
 The pipeline auto detects CUDA. If `torch.cuda.is_available()` returns true, TrackNet runs on the GPU and the whole thing speeds up by roughly 10x. Steps:
 
-1. Copy the `padel/` folder to the GPU machine. Skip `.venv/`, `outputs/` and `models/tracknet_weights.pt` from the copy; everything else is small.
+1. Copy the `padel/` folder to the GPU machine. Skip `.venv/` and `outputs/`. The TrackNet weights and YOLO weights are not in the repo either, they get fetched on the new machine.
 2. On the GPU machine, recreate the environment:
    ```bash
    cd padel
