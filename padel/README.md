@@ -65,7 +65,7 @@ for each frame in video:
 
     detections = YOLO(frame)                       # persons, balls, rackets
     detections = filter_to_court(detections)       # keep top 4 players inside ROI
-    ball       = ball_tracker.update(frame)        # YOLO -> motion+white -> predicted
+    ball       = ball_tracker.update(frame)        # TrackNet -> Kalman gap-fill -> lost
     poses      = MediaPipe(crop) for each player   # 33 landmarks, mapped back to frame
     bounce     = bounce_detector.update(ball)      # y velocity sign change?
 
@@ -93,7 +93,8 @@ padel/
   tracker.py               # YOLOv8s + ByteTrack wrapper (person, ball, racket)
   pose.py                  # runs MediaPipe Pose per player crop, remaps to full frame
   classifier.py            # pose only shot detector (wrist speed + elbow angle)
-  ball.py                  # hybrid ball tracker: YOLO + motion white + prediction
+  ball.py                  # ball tracker: TrackNet detector + Kalman filter, falls back to motion+white
+  tracknet.py              # TrackNet CNN model (heatmap based, takes 3 stacked frames)
   contact.py               # ball trajectory bend contact detector
   shot_classifier_v2.py    # labels Forehand/Backhand/Smash from a contact event
   event_merger.py          # fuses pose + contact into a confidence tagged shot
@@ -103,6 +104,7 @@ padel/
   dashboard.py             # post run matplotlib summary PNG
   requirements.txt
   challenges.txt
+  models/                  # TrackNet weights live here (not committed, download on first run)
   data/                    # input.mp4 goes here at runtime (not committed, file is large)
   outputs/                 # generated at runtime (not committed): output.mp4, events.csv,
                            # events.json, summary.json, dashboard.png
@@ -118,6 +120,14 @@ python -m venv .venv
 .venv\Scripts\activate           # on Windows. use source .venv/bin/activate elsewhere
 pip install -r requirements.txt
 ```
+
+The TrackNet weights file is not in the repo (43 MB). Download it once before running:
+
+```bash
+python -c "import os, gdown; os.makedirs('models', exist_ok=True); gdown.download('https://drive.google.com/uc?id=1XEYZ4myUN7QT-NeBYJI0xteLsvs-ZAOl', 'models/tracknet_weights.pt', quiet=False)"
+```
+
+If the download fails or you prefer to skip TrackNet, the pipeline automatically falls back to the legacy motion+white tracker with a log message.
 
 ## Run
 
@@ -153,7 +163,7 @@ Every detected shot becomes one row in `outputs/events.csv`:
 1. The camera does not move. The static mask bootstrap and the fixed court ROI both rely on this.
 2. One court of interest. The video has multiple courts in view; we pick one.
 3. Players are right handed. Side classification flips for left handers.
-4. The ball is white. The motion + white fallback uses an HSV brightness/saturation filter.
+4. The ball is small and fast. TrackNet (heatmap-based CNN, trained on racket sport footage) handles the primary detection. A court polygon and person-bbox filter reduce false positives from court lines and shoes.
 5. COCO classes generalise to padel. YOLOv8s is COCO pre trained, so its `tennis racket` covers padel rackets and its `sports ball` is the weakest link.
 
 ## Challenges
@@ -166,7 +176,7 @@ Every detected shot becomes one row in `outputs/events.csv`:
 
 - **Pure colour tracking for the ball didn't work either.** Tried treating the white ball as a colour tracking problem, since the rest of the court is mostly green or blue. It works when the ball is sitting still, but motion blur and the small size dilute the white pixels into the background during actual play. Court lines, the top of the net, and white pants on players also lit up in the white mask.
 
-- **Ball tracker became a fallback chain.** `ball.py` now tries YOLO first, then a motion + white blob detector with a static mask bootstrap (to subtract always white pixels like court lines and net), then a constant velocity prediction for short gaps. Better than YOLO alone, but recall on fast shots is still around 30 to 50 percent. A model like TrackNet would be the right tool here.
+- **Ball tracker became a fallback chain, then got replaced.** The original `ball.py` tried YOLO first, then a motion + white blob detector (with a static mask to subtract court lines), then constant velocity prediction. Better than YOLO alone, but recall on fast shots was still around 30 to 50 percent. That version is kept as `ball_legacy.py`. The current `ball.py` replaces the detector with TrackNet, a small heatmap CNN that takes three stacked frames as input and was purpose built for tracking tiny fast balls in racket sports. Recall is meaningfully better. A Kalman filter then smooths the output and fills short gaps. The weights file (43 MB, tennis trained) is downloaded automatically on first run if absent.
 
 - **First shot classifier (pose only) over fired badly.** Wrist speed peaks fired on walking, casual hand movements, grip adjustments, anything. The log was flooded with false positives.
 
@@ -197,8 +207,7 @@ Every detected shot becomes one row in `outputs/events.csv`:
 
 ## What I would build next
 
-1. TrackNet for the ball. Heatmap based, designed for tiny fast balls in racket sports. Single biggest accuracy win available.
-2. Fine tune YOLO on padel footage. Even a few hundred annotated frames would massively improve racket and ball detection.
+1. Fine tune YOLO on padel footage. Even a few hundred annotated frames would massively improve racket and ball detection.
 3. Re identification on top of ByteTrack (e.g. OSNet) for stable player IDs across occlusion.
 4. A small action recognition head (TSN or SlowFast) trained on a few hundred labeled swing clips. Use it as a third merge signal alongside pose and contact.
 5. Auto court detection via Hough lines on white pixels. Removes the manual calibration step.

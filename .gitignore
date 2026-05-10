@@ -1,0 +1,20 @@
+# root-level clutter (not part of the project)
+master_prompt.txt
+dummy_structure.py
+AIML Internship Assignment.pdf
+*.mp4
+*.avi
+jargs/
+
+# padel/ — runtime-generated, large, or personal
+padel/.venv/
+padel/__pycache__/
+padel/data/
+padel/outputs/output.mp4
+padel/yolov8n.pt
+padel/yolov8s.pt
+padel/notebooks/
+padel/progressnprobs.txt
+padel/models/tracknet_weights.pt
+padel/ball_legacy.py.new
+padel/ball.py.new

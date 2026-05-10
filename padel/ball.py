@@ -1,246 +1,205 @@
+import os
 import cv2
 import numpy as np
 from collections import deque
 
-BOOTSTRAP_FRAMES   = 45     # frames used to build the static-white mask
-HSV_S_MAX          = 70
-HSV_V_MIN          = 160
-MOTION_THRESH      = 14
-AREA_MIN           = 1
-AREA_MAX           = 40     # px^2 for a compact ball
-STREAK_AREA_MAX    = 250    # px^2 for a motion-blurred streak
-ASPECT_MIN         = 0.3
-ASPECT_MAX         = 3.0
-STREAK_ASPECT_MAX  = 10.0
-GATE_RADIUS_MIN    = 35
-GATE_RADIUS_K      = 3.5    # dynamic gate = K * speed * dt
-VEL_EMA_ALPHA      = 0.6
-MAX_PREDICTED      = 15     # consecutive predicted frames before declaring 'lost'
-PERSON_SHRINK      = 4      # px shrunk inward off person bbox before masking
-TRAIL_LEN          = 25
-ALIGN_DOT_MIN      = 0.4    # streak must point along velocity (cos angle)
+WEIGHTS_PATH = os.path.join(os.path.dirname(__file__), "models", "tracknet_weights.pt")
+TRACKNET_W   = 640
+TRACKNET_H   = 360
 
-SOURCE_YOLO      = "yolo"
-SOURCE_WHITE     = "white"
+KALMAN_PROCESS_NOISE     = 5.0
+KALMAN_MEASUREMENT_NOISE = 2.0
+MAX_JUMP_PX        = 250
+MAX_PREDICT_FRAMES = 3
+MAX_LOST_FRAMES    = 8
+TRAIL_LEN          = 25
+PERSON_SHRINK      = 4
+
+SOURCE_TRACKNET  = "yolo"        # treated as 'measured' by contact.py
 SOURCE_PREDICTED = "predicted"
 SOURCE_LOST      = "lost"
 
 _SRC_COLOR = {
-    SOURCE_YOLO:      (0, 255, 0),
-    SOURCE_WHITE:     (0, 215, 255),
+    SOURCE_TRACKNET:  (0, 255, 0),
     SOURCE_PREDICTED: (180, 180, 180),
     SOURCE_LOST:      (0, 0, 200),
 }
 
 
-class BallTracker:
-    def __init__(self):
-        self._boot_buf: list = []
-        self._static_mask    = None
-        self._gray_buf       = deque(maxlen=3)
+class _TrackNetDetector:
+    def __init__(self, weights_path: str):
+        import torch
+        from tracknet import BallTrackerNet
+        self._torch = torch
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.model  = BallTrackerNet()
+        ckpt = torch.load(weights_path, map_location=self.device, weights_only=True)
+        self.model.load_state_dict(ckpt)
+        self.model.to(self.device).eval()
+        self.frame_buffer: list = []
+        self.video_w = None
+        self.video_h = None
 
-        self._xy   = None
-        self._vxy  = (0.0, 0.0)        # px/s
-        self._t    = None
-        self._src  = SOURCE_LOST
-        self._age  = 0
+    def _preprocess(self, frame):
+        resized = cv2.resize(frame, (TRACKNET_W, TRACKNET_H))
+        return resized.astype(np.float32) / 255.0
+
+    def _postprocess(self, output):
+        out = output.argmax(dim=1).detach().cpu().numpy()
+        heatmap = (out.reshape(TRACKNET_H, TRACKNET_W) * 255).astype(np.uint8)
+        _, thresh = cv2.threshold(heatmap, 127, 255, cv2.THRESH_BINARY)
+        if thresh.max() == 0:
+            return None
+        circles = cv2.HoughCircles(thresh, cv2.HOUGH_GRADIENT, dp=1, minDist=1,
+                                   param1=50, param2=2, minRadius=2, maxRadius=7)
+        if circles is None:
+            cnts, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            if not cnts:
+                return None
+            largest = max(cnts, key=cv2.contourArea)
+            M = cv2.moments(largest)
+            if M["m00"] == 0:
+                return None
+            cx, cy = M["m10"] / M["m00"], M["m01"] / M["m00"]
+        else:
+            cx, cy = float(circles[0][0][0]), float(circles[0][0][1])
+        sx = self.video_w / TRACKNET_W
+        sy = self.video_h / TRACKNET_H
+        return (cx * sx, cy * sy)
+
+    def detect(self, frame):
+        if self.video_w is None:
+            self.video_h, self.video_w = frame.shape[:2]
+        self.frame_buffer.append(self._preprocess(frame))
+        if len(self.frame_buffer) < 3:
+            return None
+        if len(self.frame_buffer) > 3:
+            self.frame_buffer = self.frame_buffer[-3:]
+        stacked = np.concatenate(self.frame_buffer, axis=2)
+        x = self._torch.from_numpy(stacked.transpose(2, 0, 1)).unsqueeze(0).to(self.device)
+        with self._torch.no_grad():
+            out = self.model(x, testing=True)
+        return self._postprocess(out)
+
+
+def _build_kalman():
+    kf = cv2.KalmanFilter(4, 2)
+    kf.measurementMatrix = np.array([[1, 0, 0, 0],
+                                     [0, 1, 0, 0]], np.float32)
+    kf.transitionMatrix = np.array([[1, 0, 1, 0],
+                                    [0, 1, 0, 1],
+                                    [0, 0, 1, 0],
+                                    [0, 0, 0, 1]], np.float32)
+    kf.processNoiseCov     = np.eye(4, dtype=np.float32) * KALMAN_PROCESS_NOISE
+    kf.measurementNoiseCov = np.eye(2, dtype=np.float32) * KALMAN_MEASUREMENT_NOISE
+    return kf
+
+
+class BallTracker:
+    """
+    TrackNet detector + Kalman filter. Falls back to legacy motion+white tracker
+    if weights or torch are unavailable.
+
+    update() returns: {xy, vxy, source, age, trail}
+        xy:     (x, y) in pixels or None
+        vxy:    (vx, vy) in pixels per second
+        source: 'yolo' (= TrackNet measurement), 'predicted' (Kalman gap-fill), 'lost'
+        age:    consecutive frames without a fresh measurement
+        trail:  list of (x, y, source) for drawing
+    """
+
+    def __init__(self):
+        self._legacy = None
+        self.detector = None
+        try:
+            self.detector = _TrackNetDetector(WEIGHTS_PATH)
+            print(f"[BALL] TrackNet loaded from {WEIGHTS_PATH}")
+        except Exception as e:
+            print(f"[BALL] TrackNet unavailable ({e}); using legacy motion+white tracker")
+            from ball_legacy import BallTracker as _LegacyTracker
+            self._legacy = _LegacyTracker()
+
+        self.kf = _build_kalman()
+        self.kf_init = False
+        self._xy: tuple = None
+        self._vxy = (0.0, 0.0)
+        self._t   = None
+        self._src = SOURCE_LOST
+        self._age = 0
         self._trail: deque = deque(maxlen=TRAIL_LEN)
 
     def update(self, frame: np.ndarray, t_sec: float,
                tracks: list, polygon: np.ndarray) -> dict:
-        # returns: {xy, vxy, source, age, trail}
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-        if self._static_mask is None:
-            self._boot_buf.append(gray.astype(np.float32))
-            self._gray_buf.append(gray)
-            self._t = t_sec
-            if len(self._boot_buf) >= BOOTSTRAP_FRAMES:
-                self._build_static_mask(frame, polygon)
-            return self._result()
+        if self._legacy is not None:
+            return self._legacy.update(frame, t_sec, tracks, polygon)
 
         H, W = frame.shape[:2]
-        dt = max(1e-3, t_sec - self._t) if self._t is not None else 1 / 30.0
+        dt = max(1e-3, (t_sec - self._t)) if self._t is not None else 1 / 30.0
 
-        x_pred, y_pred = None, None
-        if self._xy is not None:
-            vx, vy = self._vxy
-            x_pred = float(np.clip(self._xy[0] + vx * dt, 0, W - 1))
-            y_pred = float(np.clip(self._xy[1] + vy * dt, 0, H - 1))
+        raw = self.detector.detect(frame)
 
-        yolo_xy = self._best_yolo_hit(tracks, x_pred, y_pred)
-        if yolo_xy is not None:
-            self._update_state(yolo_xy, t_sec, dt, SOURCE_YOLO)
-            self._gray_buf.append(gray)
-            self._t = t_sec
-            return self._result()
+        if raw is not None and not _inside_polygon(raw, polygon):
+            raw = None
 
-        self._gray_buf.append(gray)
-        candidate = None
-        if len(self._gray_buf) >= 2:
-            combined = self._candidate_mask(frame, gray, tracks, polygon, H, W)
-            candidate = self._best_candidate(combined, x_pred, y_pred, dt)
+        if raw is not None and _hits_person(raw, tracks):
+            raw = None
 
-        if candidate is not None:
-            self._update_state(candidate, t_sec, dt, SOURCE_WHITE)
-        elif self._xy is not None and self._age < MAX_PREDICTED and x_pred is not None:
-            self._xy  = (x_pred, y_pred)
+        if raw is not None and self.kf_init:
+            pred = self._kf_predict()
+            if _dist(raw, pred) > MAX_JUMP_PX and self._xy is not None and \
+               _dist(raw, self._xy) > MAX_JUMP_PX:
+                raw = None
+
+        if raw is not None:
+            if not self.kf_init:
+                self._kf_seed(raw)
+            else:
+                self._kf_predict()
+                m = np.array([[np.float32(raw[0])], [np.float32(raw[1])]])
+                corr = self.kf.correct(m)
+                smooth = (float(corr[0][0]), float(corr[1][0]))
+                vx_pf, vy_pf = float(corr[2][0]), float(corr[3][0])
+                fps_eq = 1.0 / dt
+                self._xy  = smooth
+                self._vxy = (vx_pf * fps_eq, vy_pf * fps_eq)
+            self._src = SOURCE_TRACKNET
+            self._age = 0
+            self._trail.append((self._xy[0], self._xy[1], self._src))
+        elif self.kf_init and self._age < MAX_PREDICT_FRAMES:
+            pred = self._kf_predict()
+            self._xy  = (float(np.clip(pred[0], 0, W - 1)),
+                         float(np.clip(pred[1], 0, H - 1)))
             self._src = SOURCE_PREDICTED
             self._age += 1
-            self._trail.append((x_pred, y_pred, SOURCE_PREDICTED))
+            self._trail.append((self._xy[0], self._xy[1], self._src))
         else:
-            self._src = SOURCE_LOST
             self._age += 1
+            if self._age >= MAX_LOST_FRAMES:
+                self._reset()
+            else:
+                self._src = SOURCE_LOST
 
         self._t = t_sec
         return self._result()
 
-    def _build_static_mask(self, frame, polygon):
-        H, W = frame.shape[:2]
-        stack  = np.stack(self._boot_buf, axis=0)
-        median = np.median(stack, axis=0).astype(np.uint8)
-        _, white_static = cv2.threshold(median, 220, 255, cv2.THRESH_BINARY)
+    def _kf_seed(self, xy):
+        s = np.array([[np.float32(xy[0])], [np.float32(xy[1])], [0.0], [0.0]], np.float32)
+        self.kf.statePre  = s.copy()
+        self.kf.statePost = s.copy()
+        self.kf_init = True
+        self._xy = (float(xy[0]), float(xy[1]))
+        self._vxy = (0.0, 0.0)
 
-        roi_mask = np.zeros((H, W), dtype=np.uint8)
-        cv2.fillPoly(roi_mask, [polygon], 255)
+    def _kf_predict(self):
+        p = self.kf.predict()
+        return (float(p[0][0]), float(p[1][0]))
 
-        self._static_mask = cv2.bitwise_and(white_static, roi_mask)
-        n_px = int(np.sum(self._static_mask > 0))
-        print(f"[BALL] bootstrap done. static mask has {n_px} always-white px")
-        self._boot_buf.clear()
-
-    def _candidate_mask(self, frame, gray, tracks, polygon, H, W):
-        prev1 = self._gray_buf[-2]
-        motion = cv2.absdiff(gray, prev1)
-        if len(self._gray_buf) == 3:
-            motion = cv2.max(motion, cv2.absdiff(gray, self._gray_buf[0]))
-        _, motion_mask = cv2.threshold(motion, MOTION_THRESH, 255, cv2.THRESH_BINARY)
-
-        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        white_mask = cv2.inRange(hsv, (0, 0, HSV_V_MIN), (180, HSV_S_MAX, 255))
-
-        roi_mask = np.zeros((H, W), dtype=np.uint8)
-        cv2.fillPoly(roi_mask, [polygon], 255)
-
-        person_mask = np.zeros((H, W), dtype=np.uint8)
-        for t in tracks:
-            if t["name"] == "person":
-                x1 = max(0,   int(t["bbox"][0]) + PERSON_SHRINK)
-                y1 = max(0,   int(t["bbox"][1]) + PERSON_SHRINK)
-                x2 = min(W-1, int(t["bbox"][2]) - PERSON_SHRINK)
-                y2 = min(H-1, int(t["bbox"][3]) - PERSON_SHRINK)
-                if x2 > x1 and y2 > y1:
-                    cv2.rectangle(person_mask, (x1, y1), (x2, y2), 255, -1)
-
-        combined = motion_mask & white_mask & roi_mask
-        combined = combined & ~self._static_mask
-        combined = combined & ~person_mask
-
-        kernel = np.ones((2, 2), np.uint8)
-        combined = cv2.dilate(combined, kernel, iterations=1)
-        return combined
-
-    def _best_candidate(self, mask, x_pred, y_pred, dt):
-        num, _, stats, centroids = cv2.connectedComponentsWithStats(mask, connectivity=8)
-        if num <= 1:
-            return None
-
-        speed = (self._vxy[0]**2 + self._vxy[1]**2) ** 0.5
-        gate  = max(GATE_RADIUS_MIN, GATE_RADIUS_K * speed * dt)
-
-        if speed > 1.0:
-            ex, ey = self._vxy[0] / speed, self._vxy[1] / speed
-        else:
-            ex, ey = 0.0, 0.0
-
-        best_xy, best_score = None, float("inf")
-        for i in range(1, num):
-            area = int(stats[i, cv2.CC_STAT_AREA])
-            w    = int(stats[i, cv2.CC_STAT_WIDTH])
-            h    = int(stats[i, cv2.CC_STAT_HEIGHT])
-            cx   = float(centroids[i][0])
-            cy   = float(centroids[i][1])
-            aspect_long = max(w, h) / max(1, min(w, h))
-
-            is_compact = (AREA_MIN <= area <= AREA_MAX
-                          and (1.0 / aspect_long) >= ASPECT_MIN)
-
-            is_streak = False
-            streak_endpoint = None
-            if speed > 50.0 and not is_compact:
-                if (AREA_MIN <= area <= STREAK_AREA_MAX
-                        and aspect_long <= STREAK_ASPECT_MAX):
-                    if w >= h:
-                        sdx, sdy = 1.0, 0.0
-                        ep_left  = (stats[i, cv2.CC_STAT_LEFT], cy)
-                        ep_right = (stats[i, cv2.CC_STAT_LEFT] + w - 1, cy)
-                    else:
-                        sdx, sdy = 0.0, 1.0
-                        ep_left  = (cx, stats[i, cv2.CC_STAT_TOP])
-                        ep_right = (cx, stats[i, cv2.CC_STAT_TOP] + h - 1)
-                    align = abs(sdx * ex + sdy * ey)
-                    if align >= ALIGN_DOT_MIN:
-                        is_streak = True
-                        d_left  = (ep_left[0]  - (x_pred or cx)) * ex + (ep_left[1]  - (y_pred or cy)) * ey
-                        d_right = (ep_right[0] - (x_pred or cx)) * ex + (ep_right[1] - (y_pred or cy)) * ey
-                        streak_endpoint = ep_right if d_right > d_left else ep_left
-
-            if not (is_compact or is_streak):
-                continue
-
-            cand_xy = streak_endpoint if is_streak else (cx, cy)
-
-            if x_pred is not None:
-                dist = ((cand_xy[0] - x_pred)**2 + (cand_xy[1] - y_pred)**2) ** 0.5
-                if dist > gate:
-                    continue
-                if speed > 1.0:
-                    ax = cand_xy[0] - x_pred; ay = cand_xy[1] - y_pred
-                    an = max(1e-6, (ax**2 + ay**2) ** 0.5)
-                    alignment = -(ex * ax/an + ey * ay/an)
-                    score = dist + 8.0 * alignment
-                else:
-                    score = dist
-                if is_streak:
-                    score -= 5.0
-            else:
-                score = -area
-
-            if score < best_score:
-                best_score, best_xy = score, cand_xy
-
-        return best_xy
-
-    def _best_yolo_hit(self, tracks, x_pred, y_pred):
-        balls = [t for t in tracks if t["name"] == "ball"]
-        if not balls:
-            return None
-        to_center = lambda t: (
-            0.5 * (t["bbox"][0] + t["bbox"][2]),
-            0.5 * (t["bbox"][1] + t["bbox"][3])
-        )
-        if len(balls) == 1:
-            return to_center(balls[0])
-        if x_pred is None:
-            return to_center(balls[0])
-        return min(
-            (to_center(b) for b in balls),
-            key=lambda p: (p[0]-x_pred)**2 + (p[1]-y_pred)**2
-        )
-
-    def _update_state(self, xy, t_sec, dt, source):
-        if self._xy is not None:
-            raw_vx = (xy[0] - self._xy[0]) / dt
-            raw_vy = (xy[1] - self._xy[1]) / dt
-            ovx, ovy = self._vxy
-            self._vxy = (
-                VEL_EMA_ALPHA * raw_vx + (1 - VEL_EMA_ALPHA) * ovx,
-                VEL_EMA_ALPHA * raw_vy + (1 - VEL_EMA_ALPHA) * ovy,
-            )
-        self._xy  = xy
-        self._src = source
-        self._age = 0
-        self._trail.append((xy[0], xy[1], source))
+    def _reset(self):
+        self.kf = _build_kalman()
+        self.kf_init = False
+        self._xy = None
+        self._vxy = (0.0, 0.0)
+        self._src = SOURCE_LOST
 
     def _result(self) -> dict:
         return {
@@ -252,16 +211,36 @@ class BallTracker:
         }
 
 
+def _dist(a, b):
+    return ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2) ** 0.5
+
+
+def _inside_polygon(xy, polygon) -> bool:
+    if polygon is None:
+        return True
+    return cv2.pointPolygonTest(polygon, (float(xy[0]), float(xy[1])), False) >= 0
+
+
+def _hits_person(xy, tracks) -> bool:
+    px, py = xy
+    for t in tracks:
+        if t.get("name") != "person":
+            continue
+        x1, y1, x2, y2 = t["bbox"]
+        x1 += PERSON_SHRINK; y1 += PERSON_SHRINK
+        x2 -= PERSON_SHRINK; y2 -= PERSON_SHRINK
+        if x1 <= px <= x2 and y1 <= py <= y2:
+            return True
+    return False
+
+
 def draw_ball(frame: np.ndarray, ball_state: dict) -> None:
     trail = ball_state.get("trail", [])
     for i in range(1, len(trail)):
         x0, y0, _  = trail[i - 1]
         x1, y1, s1 = trail[i]
-        cv2.line(frame,
-                 (int(x0), int(y0)),
-                 (int(x1), int(y1)),
+        cv2.line(frame, (int(x0), int(y0)), (int(x1), int(y1)),
                  _SRC_COLOR.get(s1, (255, 255, 255)), 1)
-
     xy  = ball_state.get("xy")
     src = ball_state.get("source", SOURCE_LOST)
     if xy is not None and src != SOURCE_LOST:
