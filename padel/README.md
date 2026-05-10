@@ -9,6 +9,7 @@ Everything runs on rules and pre trained models. No custom training was done.
 - Detect and track the four players, the ball and the rackets across frames.
 - Filter out off court people and neighbouring courts using a manual court polygon.
 - Run pose estimation (33 landmarks) on each tracked player.
+- Track the ball with a small CNN (TrackNet) plus a Kalman filter for smoothing.
 - Classify each detected shot as Forehand, Backhand or Serve/Smash.
 - Tag every shot with a confidence level (high / med / low) based on how many detectors agreed.
 - Estimate a coarse shot direction (cross-left, cross-right, down-the-line, lob, etc.) from the post contact ball trajectory.
@@ -24,6 +25,7 @@ Everything runs on rules and pre trained models. No custom training was done.
 |---|---|
 | Detect and track players, ball, racket | `tracker.py` (YOLOv8s + ByteTrack) |
 | Pose estimation per player | `pose.py` (MediaPipe Pose, run on each player crop) |
+| Ball detection and tracking | `ball.py` (TrackNet + Kalman), `tracknet.py` (model) |
 | Shot classification | `classifier.py`, `contact.py`, `event_merger.py` |
 | CSV / JSON output | `logger.py` |
 | Shot count analytics | `summary.json` plus a live overlay on the video |
@@ -38,10 +40,11 @@ The video is processed one frame at a time. For each frame:
 
 ```
 read frame
-  YOLOv8 finds people, balls, rackets
+  YOLOv8 finds people, rackets
   keep only the 4 players inside the court polygon
   MediaPipe draws a skeleton on each player
-  ball tracker tries: YOLO, then motion + white blob, then a predicted position
+  TrackNet looks at the last 3 frames and produces a heatmap of the ball
+  Kalman filter smooths the ball position and fills 1 to 3 frame gaps
   bounce detector watches the ball y velocity for a sign flip
 
   two independent shot detectors run side by side:
@@ -58,14 +61,14 @@ read frame
 ## Pseudocode
 
 ```text
-load YOLO model, MediaPipe Pose, court ROI
+load YOLO model, MediaPipe Pose, TrackNet, court ROI
 open input video, create output video writer
 
 for each frame in video:
 
-    detections = YOLO(frame)                       # persons, balls, rackets
+    detections = YOLO(frame)                       # persons, rackets
     detections = filter_to_court(detections)       # keep top 4 players inside ROI
-    ball       = ball_tracker.update(frame)        # TrackNet -> Kalman gap-fill -> lost
+    ball       = ball_tracker.update(frame)        # TrackNet detector + Kalman smoother
     poses      = MediaPipe(crop) for each player   # 33 landmarks, mapped back to frame
     bounce     = bounce_detector.update(ball)      # y velocity sign change?
 
@@ -90,10 +93,11 @@ at the end:
 ```
 padel/
   main.py                  # the loop above, wires every module together
-  tracker.py               # YOLOv8s + ByteTrack wrapper (person, ball, racket)
+  tracker.py               # YOLOv8s + ByteTrack wrapper (person, racket)
   pose.py                  # runs MediaPipe Pose per player crop, remaps to full frame
   classifier.py            # pose only shot detector (wrist speed + elbow angle)
-  ball.py                  # ball tracker: TrackNet detector + Kalman filter, falls back to motion+white
+  ball.py                  # ball tracker: TrackNet detector + Kalman filter, with auto fallback
+  ball_legacy.py           # earlier ball tracker (motion + white blob), kept as fallback
   tracknet.py              # TrackNet CNN model (heatmap based, takes 3 stacked frames)
   contact.py               # ball trajectory bend contact detector
   shot_classifier_v2.py    # labels Forehand/Backhand/Smash from a contact event
@@ -104,13 +108,13 @@ padel/
   dashboard.py             # post run matplotlib summary PNG
   requirements.txt
   challenges.txt
-  models/                  # TrackNet weights live here (not committed, download on first run)
+  models/                  # TrackNet weights live here (43 MB, not committed, downloaded once)
   data/                    # input.mp4 goes here at runtime (not committed, file is large)
   outputs/                 # generated at runtime (not committed): output.mp4, events.csv,
                            # events.json, summary.json, dashboard.png
 ```
 
-The `data/` and `outputs/` folders are referenced by the code but their contents are not in the repo, since the videos are large. Drive links to the input and output videos are at the bottom of this README.
+The `data/`, `outputs/` and `models/` folders are referenced by the code but their contents are not in the repo. Drive links to the input and output videos are at the bottom of this README.
 
 ## Setup
 
@@ -124,10 +128,11 @@ pip install -r requirements.txt
 The TrackNet weights file is not in the repo (43 MB). Download it once before running:
 
 ```bash
+pip install gdown
 python -c "import os, gdown; os.makedirs('models', exist_ok=True); gdown.download('https://drive.google.com/uc?id=1XEYZ4myUN7QT-NeBYJI0xteLsvs-ZAOl', 'models/tracknet_weights.pt', quiet=False)"
 ```
 
-If the download fails or you prefer to skip TrackNet, the pipeline automatically falls back to the legacy motion+white tracker with a log message.
+If the weights are missing or torch fails to load, `ball.py` quietly falls back to the older motion + white blob tracker (`ball_legacy.py`) and prints a log line saying so. The pipeline keeps running either way.
 
 ## Run
 
@@ -137,7 +142,7 @@ python court_roi.py              # one time: click 4 court corners, press ENTER
 python main.py                   # processes the video
 ```
 
-CPU is slow. Expect 1 to 3 fps at `imgsz=1280`. Fine for a one off run.
+CPU is slow with TrackNet in the mix. Expect roughly 0.3 to 0.5 fps end to end at `imgsz=1280`. A five minute clip at 30 fps takes a couple of hours on CPU. With a CUDA GPU it drops to a few minutes. Notes on running on a GPU machine are at the bottom.
 
 ## Outputs
 
@@ -160,11 +165,11 @@ Every detected shot becomes one row in `outputs/events.csv`:
 
 ## Assumptions
 
-1. The camera does not move. The static mask bootstrap and the fixed court ROI both rely on this.
+1. The camera does not move. The fixed court ROI relies on this.
 2. One court of interest. The video has multiple courts in view; we pick one.
 3. Players are right handed. Side classification flips for left handers.
-4. The ball is small and fast. TrackNet (heatmap-based CNN, trained on racket sport footage) handles the primary detection. A court polygon and person-bbox filter reduce false positives from court lines and shoes.
-5. COCO classes generalise to padel. YOLOv8s is COCO pre trained, so its `tennis racket` covers padel rackets and its `sports ball` is the weakest link.
+4. The ball is small and fast. TrackNet does the primary detection. A court polygon and a person bounding box filter sit on top to reject false positives on court lines, shoes and white clothing.
+5. COCO classes generalise to padel. YOLOv8s is COCO pre trained, so its `tennis racket` class covers padel rackets.
 
 ## Challenges
 
@@ -176,11 +181,13 @@ Every detected shot becomes one row in `outputs/events.csv`:
 
 - **Pure colour tracking for the ball didn't work either.** Tried treating the white ball as a colour tracking problem, since the rest of the court is mostly green or blue. It works when the ball is sitting still, but motion blur and the small size dilute the white pixels into the background during actual play. Court lines, the top of the net, and white pants on players also lit up in the white mask.
 
-- **Ball tracker became a fallback chain, then got replaced.** The original `ball.py` tried YOLO first, then a motion + white blob detector (with a static mask to subtract court lines), then constant velocity prediction. Better than YOLO alone, but recall on fast shots was still around 30 to 50 percent. That version is kept as `ball_legacy.py`. The current `ball.py` replaces the detector with TrackNet, a small heatmap CNN that takes three stacked frames as input and was purpose built for tracking tiny fast balls in racket sports. Recall is meaningfully better. A Kalman filter then smooths the output and fills short gaps. The weights file (43 MB, tennis trained) is downloaded automatically on first run if absent.
+- **Ball tracker became a fallback chain, then got replaced.** The original `ball.py` tried YOLO first, then a motion + white blob detector with a static mask to subtract court lines, then a constant velocity prediction for short gaps. Better than YOLO alone, but recall on fast shots was still around 30 to 50 percent. That version is kept as `ball_legacy.py`. The current `ball.py` swaps the detector for TrackNet, a small heatmap CNN that takes three stacked frames as input and was purpose built for tracking tiny fast balls in racket sports. A 4 state Kalman filter (x, y, vx, vy) then smooths the position and fills 1 to 3 frame gaps. Recall is meaningfully better and the trajectory is much less jittery, which also helps the bounce detector.
+
+- **TrackNet weights are tennis trained, not padel trained.** Padel balls are similar enough in size and contrast that it generalises, but it is not perfect. Fine tuning on a few hundred padel frames would close the gap. The weights file is not in the repo because it is 43 MB, so the setup instructions include a one line download.
 
 - **First shot classifier (pose only) over fired badly.** Wrist speed peaks fired on walking, casual hand movements, grip adjustments, anything. The log was flooded with false positives.
 
-- **Second attempt (contact only) under fired.** Requiring a ball trajectory bend near a wrist is the right signal, but it depends on the ball being tracked, which it often isn't. So real shots got missed.
+- **Second attempt (contact only) under fired.** Requiring a ball trajectory bend near a wrist is the right signal, but it depends on the ball being tracked, which it often was not. So real shots got missed. With TrackNet the contact detector now fires more often, which directly raises the count of `high` confidence (contact+pose) shots.
 
 - **Final classifier is a hybrid with confidence tags.** Both detectors run in parallel and `event_merger.py` fuses them. Both fire within 0.4 seconds for the same player gives a `high` confidence shot. Only one fires gives `med` or `low`. Nothing gets thrown away, and downstream code can pick the precision/recall tradeoff.
 
@@ -190,24 +197,25 @@ Every detected shot becomes one row in `outputs/events.csv`:
 
 - **Player IDs swap on occlusion.** ByteTrack is good but not perfect. When two players cross, IDs can switch, so `player_id=2` in the first half might be a different person later. A re identification model on top would fix it.
 
-- **MediaPipe runs once per player crop.** It is single person, so I run it on each player bounding box with `static_image_mode=True` (otherwise its temporal smoothing leaks landmarks between players). On CPU this dominates the per frame cost.
+- **MediaPipe runs once per player crop.** It is single person, so I run it on each player bounding box with `static_image_mode=True` (otherwise its temporal smoothing leaks landmarks between players). On CPU this used to dominate the per frame cost; now TrackNet is the bigger cost and a GPU pulls both down sharply.
 
-- **No custom training was done.** Everything uses pre trained weights. Training a small YOLO on padel specific footage, especially for the ball and racket, would close most of the remaining accuracy gap. Out of scope for this prototype.
+- **No custom training was done.** Everything uses pre trained weights. Training a small YOLO on padel specific footage, or fine tuning TrackNet on padel ball clips, would close most of the remaining accuracy gap. Out of scope for this prototype.
 
 ## Limitations
 
-1. Ball recall on fast shots is moderate. Tiny plus blurry equals hard. Expect to miss some.
-2. The static white mask does not update. Long matches with auto exposure drift would slowly leak court lines back into the candidate mask.
-3. Player bounding box masking can hide the ball at contact. A ball overlapping a wrist sits inside the bounding box at the exact moment we want to detect it. I shrink the box by 4 pixels as a compromise.
-4. Pose only events still over fire. They are tagged `med` or `low`. For clean analytics, filter to `confidence == "high"`.
-5. Right handedness assumption. Side labels invert for left handed players.
-6. 2D bounce detection. A wall bounce and a floor bounce both look like a y velocity flip and can't be told apart without depth.
-7. One court only. The ROI is fixed; multi court analysis would need one ROI per court.
-8. Player IDs can swap on occlusion. Stable per run, not globally identifiable.
+1. Ball recall on fast shots is good but not perfect. TrackNet helps a lot, but a tennis trained model still misses some padel specific cases.
+2. Player bounding box masking can hide the ball at contact. A ball overlapping a wrist sits inside the bounding box at the exact moment we want to detect it. I shrink the box by 4 pixels as a compromise.
+3. Pose only events still over fire. They are tagged `med` or `low`. For clean analytics, filter to `confidence == "high"`.
+4. Right handedness assumption. Side labels invert for left handed players.
+5. 2D bounce detection. A wall bounce and a floor bounce both look like a y velocity flip and can't be told apart without depth.
+6. One court only. The ROI is fixed; multi court analysis would need one ROI per court.
+7. Player IDs can swap on occlusion. Stable per run, not globally identifiable.
+8. CPU is slow. End to end at ~0.3 fps with TrackNet. A GPU brings it to a comfortable speed.
 
 ## What I would build next
 
-1. Fine tune YOLO on padel footage. Even a few hundred annotated frames would massively improve racket and ball detection.
+1. Fine tune TrackNet on padel ball footage. Even a few hundred labeled frames would push recall further.
+2. Fine tune YOLO on padel footage for the racket class.
 3. Re identification on top of ByteTrack (e.g. OSNet) for stable player IDs across occlusion.
 4. A small action recognition head (TSN or SlowFast) trained on a few hundred labeled swing clips. Use it as a third merge signal alongside pose and contact.
 5. Auto court detection via Hough lines on white pixels. Removes the manual calibration step.
@@ -221,7 +229,28 @@ The annotated output and the input video are not in the repo because of size. Dr
 - [Annotated output](https://drive.google.com/file/d/1ik4VnMhxhaC_M6jOl656LmbJi0PE3MOr/view?usp=sharing)
 - [outputs/ zip (events.csv, events.json, summary.json, dashboard.png)](https://drive.google.com/drive/folders/1ttjDwEkKP6b-O3j0K136FrQVESb-rc5j?usp=sharing)
 
-To reproduce locally, drop `input.mp4` into `padel/data/`, run `python court_roi.py`, then `python main.py`.
+To reproduce locally, drop `input.mp4` into `padel/data/`, download the TrackNet weights (see Setup), run `python court_roi.py`, then `python main.py`.
+
+## Running on a GPU
+
+The pipeline auto detects CUDA. If `torch.cuda.is_available()` returns true, TrackNet runs on the GPU and the whole thing speeds up by roughly 10x. Steps:
+
+1. Copy the `padel/` folder to the GPU machine. Skip `.venv/`, `outputs/` and `models/tracknet_weights.pt` from the copy; everything else is small.
+2. On the GPU machine, recreate the environment:
+   ```bash
+   cd padel
+   python -m venv .venv
+   .venv\Scripts\activate
+   pip install -r requirements.txt
+   pip install --upgrade --index-url https://download.pytorch.org/whl/cu121 torch torchvision
+   ```
+   The second pip install replaces the CPU torch wheel with the CUDA build. Use the `cu121` channel for CUDA 12.1, or `cu118` for CUDA 11.8.
+3. Download the TrackNet weights once (see Setup).
+4. Drop your video at `data/input.mp4`.
+5. Run `python court_roi.py` once to set the court polygon. If you cannot use a GUI on the remote machine, copy the local `court_roi.json` over to the GPU machine instead, or pass the polygon inline via the `PADEL_ROI` env var (see the Run reference at the bottom).
+6. Run `python main.py`.
+
+You should see `TrackNet loaded` followed by a much higher fps in the per frame log. A five minute clip should finish in a few minutes rather than a couple of hours.
 
 ## Run reference
 
