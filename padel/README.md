@@ -225,7 +225,7 @@ Every detected shot becomes one row in `outputs/events.csv`:
 
 The annotated output and the input video are not in the repo because of size. Drive links:
 
-- [Input video](https://drive.google.com/file/d/14ySwgP3Y2PH2BnsrC8ESpXAOHIQGYnvy/view?usp=sharing)
+- [Input video](https://drive.google.com/file/d/1g5jKIXEjbzGJrQJczRPPBeqIQz37TYM_/view?usp=sharing)
 - [Annotated output](https://drive.google.com/file/d/1ik4VnMhxhaC_M6jOl656LmbJi0PE3MOr/view?usp=sharing)
 - [outputs/ zip (events.csv, events.json, summary.json, dashboard.png)](https://drive.google.com/drive/folders/1ttjDwEkKP6b-O3j0K136FrQVESb-rc5j?usp=sharing)
 
