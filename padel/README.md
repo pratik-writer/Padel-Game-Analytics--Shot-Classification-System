@@ -109,11 +109,12 @@ padel/
   requirements.txt
   challenges.txt
   data/                    # input.mp4 goes here at runtime (not committed, file is large)
-  outputs/                 # generated at runtime (not committed): output.mp4, events.csv,
-                           # events.json, summary.json, dashboard.png
+  outputs/                 # events.csv, events.json, summary.json, dashboard.png
+                           # are committed here so you can inspect them without running the pipeline.
+                           # output.mp4 is excluded from the repo because of size.
 ```
 
-The `data/` and `outputs/` folders are referenced by the code but their contents are not in the repo. The TrackNet weights file is also not in the repo because of size (43 MB); it gets downloaded into a fresh `models/` folder during setup. Drive links to the input and output videos are at the bottom of this README.
+The `data/` folder is not committed (input video is large). The `outputs/` folder is partially committed: the four structured outputs (`events.csv`, `events.json`, `summary.json`, `dashboard.png`) from a real run on the sample clip are in the repo so you can check the results straight away. The annotated video (`output.mp4`) is excluded due to file size; a Drive link to it is at the bottom. The TrackNet weights are also not in the repo (43 MB); they get downloaded into a fresh `models/` folder during setup.
 
 ## Setup
 
